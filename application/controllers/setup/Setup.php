@@ -20,6 +20,12 @@ class Setup extends CI_Controller
 
     public function index()
     {
+        // $this->load->dbforge();
+        // if ($this->dbforge->create_table('db_projeto.options',TRUE)) echo 'result: if';
+        // else  echo 'result: else';
+
+
+
         if ($this->option->get_option('setup_executado' == 1)) {
             echo "setup_executado sim";
             redirect('admin/admin', 'refresh');
