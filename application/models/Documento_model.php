@@ -1,4 +1,11 @@
 <?php
+/** Versão antiga, não se basear por ela */
+/** Versão antiga, não se basear por ela */
+/** Versão antiga, não se basear por ela */
+/** Versão antiga, não se basear por ela */
+/** Versão antiga, não se basear por ela */
+/** Versão antiga, não se basear por ela */
+
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Documento_model extends CI_Model {
