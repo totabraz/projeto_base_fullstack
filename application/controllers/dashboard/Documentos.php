@@ -124,7 +124,7 @@ class Documentos extends CI_Controller {
 				$dados_insert["keywords"] = removeSpaces($dados_form["keywords"]);
 
 				// salvar no banco
-				if ($id = $this->documentos->salvar($dados_insert)) {
+				if ($id = $this->documentos->save($dados_insert)) {
 					$msg = set_msg(getMsgOk('Documento cadstrada com sucesso!'));
 					redirect('dashboard/documentos/editar/'. $id,'refresh');
 				} else { 
@@ -247,7 +247,7 @@ class Documentos extends CI_Controller {
 					$dados_update["idioma"] = $dados_form["idioma"];
 					$dados_update["data_defesa"] = changeDateToDB($dados_form["data_defesa"]);
 					$dados_update["arquivo"] = $dados_upload["file_name"];
-					if ($this->documentos->salvar($dados_update)){
+					if ($this->documentos->save($dados_update)){
 						unlink($img_antiga);
 						set_msg(getMsgOk('Documento alterado com sucesso!'));
 						$dados['documento']->arquivo = $dados_update['arquivo'];
@@ -274,7 +274,7 @@ class Documentos extends CI_Controller {
 				$dados_update["tipo_doc"] = $dados_form["tipo_doc"];
 				$dados_update["idioma"] = $dados_form["idioma"];
 				$dados_update["data_defesa"] = changeDateToDB($dados_form["data_defesa"]);
-				if ($this->documentos->salvar($dados_update)){
+				if ($this->documentos->save($dados_update)){
 					set_msg(getMsgOk('Documento alterado com sucesso!'));
 				} else {
 					set_msg(getMsgError('Ops! Nenhum documento foi alterado!')); 

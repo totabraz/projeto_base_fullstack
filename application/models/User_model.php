@@ -9,7 +9,7 @@ class User_model extends CI_Model
         parent::__construct();
     }
 
-    public function salvar($dados)
+    public function save($dados)
     {
         $dados =  (array)$dados;
         echo "chegou?";

@@ -68,7 +68,7 @@ class Setup extends CI_Controller
                 $dados_insert["password"] = password_hash($dados_form['password'], PASSWORD_DEFAULT);
 
                 // salvar no banco
-                if ($id = $this->user->salvar($dados_insert) && $this->option->update_option('setup_executado', 1)) {
+                if ($id = $this->user->save($dados_insert) && $this->option->update_option('setup_executado', 1)) {
                     $msg = getMsgOk('Login cadstrado com sucesso!');
                     $this->session->set_userdata('logged', true);
                     $this->session->set_userdata('login', $dados_form['login']);

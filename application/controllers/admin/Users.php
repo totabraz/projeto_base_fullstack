@@ -100,7 +100,7 @@ class Users extends CI_Controller
                     }
                 }
 
-                if ($this->user->salvar($dados_insert)) {
+                if ($this->user->save($dados_insert)) {
                     if ($changePS) $msg = getMsgOk('Dados atualizados. [Mesma senha]');
                     else $msg = getMsgOk('Dados atualizados.[Senhas atualizadas]');
                 } else {
@@ -138,7 +138,7 @@ class Users extends CI_Controller
             } else {
                 $user->blocked = 1;
             }
-            if ($this->user->salvar($user)) {
+            if ($this->user->save($user)) {
                 set_msg(getMsgOk('Usuário bloqueaeo com sucesso'));
             } else {
                 set_msg(getMsgError('Erro ao bloquear usuário'));
@@ -200,7 +200,7 @@ class Users extends CI_Controller
                 $dados_insert["password"] = password_hash($dados_form['password'], PASSWORD_DEFAULT);
 
                 // salvar no banco
-                if ($id = $this->user->salvar($dados_insert)) {
+                if ($id = $this->user->save($dados_insert)) {
                     set_msg(getMsgOk('Usuário cadastrado!'));
                     if ($dados_form['addmore']) {
                         redirect('admin/users/cadastrar', 'refresh');
@@ -344,7 +344,7 @@ class Users extends CI_Controller
                         echo "-4";
                     }
                 }
-                if ($this->user->salvar($dados_insert)) {
+                if ($this->user->save($dados_insert)) {
                     if ($changePS) $msg = getMsgOk('Dados atualizados. [Mesma senha]');
                     else $msg = getMsgOk('Dados atualizados.[Senhas atualizadas]');
                 } else if (!$samePassWord) {

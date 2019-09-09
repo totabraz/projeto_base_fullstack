@@ -7,7 +7,7 @@ class Documento_model extends CI_Model {
 		parent::__construct();
 	}
 	
-	public function salvar($dados) {
+	public function save($dados) {
 		if (isset($dados['id']) && $dados['id'] > 0) {
 			// Documento já existe. Devo editar
 			$this->db->where('id', $dados['id']);

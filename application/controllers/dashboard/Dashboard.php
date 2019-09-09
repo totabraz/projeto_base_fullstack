@@ -115,7 +115,7 @@ class Dashboard extends CI_Controller
                 $dados_insert["keywords"] = removeSpaces($dados_form["keywords"]);
 
                 // salvar no banco
-                if ($id = $this->documentos->salvar($dados_insert)) {
+                if ($id = $this->documentos->save($dados_insert)) {
                     $msg = set_msg(getMsgOk('Documento cadstrada com sucesso!'));
                     redirect('dashboard/documentos/editar/' . $id, 'refresh');
                 } else {
@@ -186,7 +186,7 @@ class Dashboard extends CI_Controller
     //             $dados_insert["password"] = password_hash($dados_form['password'], PASSWORD_DEFAULT);
 
     //             // salvar no banco
-    //             if ($id = $this->user->salvar($dados_insert)) {
+    //             if ($id = $this->user->save($dados_insert)) {
     //                 $msg = set_msg(getMsgOk('Usuário cadstrado com sucesso!'));
     //                 $this->session->set_userdata('logged', true);
     //                 $this->session->set_userdata('login', $dados_form['login']);
@@ -258,7 +258,7 @@ class Dashboard extends CI_Controller
                     set_msg(getMsgError('Senhas não coferem!'));
                 }
             }
-            $this->user->salvar($userFinal);
+            $this->user->save($userFinal);
             set_msg(getMsgOk('Dados alterados com sucesso! :D'));
         }
 

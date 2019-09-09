@@ -139,7 +139,7 @@ class News extends CI_Controller
     //                 }
     //             }
 
-    //             if ($this->user->salvar($dados_insert)) {
+    //             if ($this->user->save($dados_insert)) {
     //                 if ($changePS) $msg = getMsgOk('Dados atualizados. [Mesma senha]');
     //                 else $msg = getMsgOk('Dados atualizados.[Senhas atualizadas]');
     //             } else {
