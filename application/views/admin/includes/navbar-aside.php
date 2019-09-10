@@ -81,11 +81,37 @@ switch ($permission_value) {
             </div>
         </div>
 
+
+        <ul class="sidebar-menu">
+            <li class="header">CATEGORIAS</li>
+        </ul>
+
+        <!-- MENU CATEGORIES -->
+        <?php if ($nav_categories) { ?>
+            <ul class="sidebar-menu" data-widget="tree">
+                <li class="treeview menu-open">
+                    <a href="#">
+                        <i class="fa fa-users"></i>&nbsp;<span>Categorias</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <?php $display = ($menuActiveSplited == 'docs') ? 'block' : 'block'; ?>
+                    <ul class="treeview-menu " style="display:<?php echo $display ?>">
+                        <li><a href="<?php echo base_url('admin/documents/cadastrar'); ?>"><i class="fa fa-circle<?php if ($menuActive == 'documents/create') echo " "; ?>-o"></i>&nbsp;Cadastrar</a></li>
+                        <li><a href="<?php echo base_url('admin/documents/listar'); ?>"><i class="fa fa-circle<?php if ($menuActive == 'documents/list') echo " "; ?>-o"></i>&nbsp;Listar</a></li>
+                    </ul>
+                </li>
+            </ul>
+        <?php } ?>
+
+
+
         <ul class="sidebar-menu">
             <li class="header">POSTAGENS</li>
         </ul>
 
-        <!-- MENU BLOG -->
+        <!-- MENU NOTÍCIAS -->
         <?php if ($nav_news) { ?>
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="treeview menu-open">
@@ -130,25 +156,6 @@ switch ($permission_value) {
         <ul class="sidebar-menu">
             <li class="header">DOCUMENTOS</li>
         </ul>
-
-        <!-- MENU CATEGORIES -->
-        <?php if ($nav_categories) { ?>
-            <ul class="sidebar-menu" data-widget="tree">
-                <li class="treeview menu-open">
-                    <a href="#">
-                        <i class="fa fa-users"></i>&nbsp;<span>Categorias</span>
-                        <span class="pull-right-container">
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </span>
-                    </a>
-                    <?php $display = ($menuActiveSplited == 'docs') ? 'block' : 'block'; ?>
-                    <ul class="treeview-menu " style="display:<?php echo $display ?>">
-                        <li><a href="<?php echo base_url('admin/documents/cadastrar'); ?>"><i class="fa fa-circle<?php if ($menuActive == 'documents/create') echo " "; ?>-o"></i>&nbsp;Cadastrar</a></li>
-                        <li><a href="<?php echo base_url('admin/documents/listar'); ?>"><i class="fa fa-circle<?php if ($menuActive == 'documents/list') echo " "; ?>-o"></i>&nbsp;Listar</a></li>
-                    </ul>
-                </li>
-            </ul>
-        <?php } ?>
 
 
         <!-- MENU DOCS -->
