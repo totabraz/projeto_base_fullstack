@@ -1,6 +1,10 @@
-projeto_base_codeigniter
+# What is this? 
+- CodeIgniter 3 <PHP> project
+- A CMS to start projects faster, with a better interface
+  
+# What u will need? 
+- Xampp, wampp,.. or something like. (or apache + mysql)
 
-CodeIgniter 3 <PHP>
 
 # Setup:
 - First, create a DB: 
