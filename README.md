@@ -8,9 +8,8 @@
 
 # Setup:
 - First, create a DB: 
-`http://localhost/phpmyadmin, ...`
-
-- DB's Link coming soon. 
+`http://localhost/phpmyadmin, ..
+- /_start_db/dp_projeto.sql
 
 # To change: 
 - _folder name:_
