@@ -5,6 +5,7 @@ CodeIgniter 3 <PHP>
 # Setup:
 - First, create a DB: 
 `http://localhost/phpmyadmin, ...`
+
 -> DB's Link coming soon. 
 
 # To change: 
