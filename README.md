@@ -10,7 +10,7 @@
 - First, create a DB: 
 `http://localhost/phpmyadmin, ...`
 
--> DB's Link coming soon. 
+- DB's Link coming soon. 
 
 # To change: 
 _folder name:_
