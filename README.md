@@ -10,7 +10,7 @@ CodeIgniter 3 <PHP>
 
 # To change: 
 _folder name:_
-`- at: /projeto_base_fullstack/application/config/config.php`
+`at: /projeto_base_fullstack/application/config/config.php`
 $config['base_url'] = 'http://localhost/projeto_base_fullstack/';
 
 
