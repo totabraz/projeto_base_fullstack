@@ -83,7 +83,7 @@ switch ($permission_value) {
 
 
         <ul class="sidebar-menu">
-            <li class="header">CATEGORIAS</li>
+            <li class="header">CATEGORIAS  </li>
         </ul>
 
         <!-- MENU CATEGORIES -->

@@ -107,7 +107,7 @@ class News extends CI_Controller
     //                 if (isset($dados_form['login'])) $dados['user']['login'] = $dados_form['login'];
     //                 if (isset($dados_form['email'])) $dados['user']['email'] = $dados_form['email'];
     //                 if (isset($dados_form['phone'])) $dados['user']['phone'] = $dados_form['phone'];
-    //                 if (isset($dados_form['first_name'])) $dados['user']['first_name'] = $dados_form['first_name'];
+    //                 if (isset($dados_form['full_name'])) $dados['user']['full_name'] = $dados_form['full_name'];
     //                 if (isset($dados_form['last_name'])) $dados['user']['last_name'] = $dados_form['last_name'];
     //                 if (isset($dados_form['blocked'])) $dados['user']['blocked'] = $dados_form['blocked'];
     //                 if (isset($dados_form['permission_name'])) {
@@ -120,7 +120,7 @@ class News extends CI_Controller
     //             $dados_insert["login"] = $dados_form['login'];
     //             $dados_insert["email"] = $dados_form['email'];
     //             $dados_insert["phone"] = $dados_form['phone'];
-    //             $dados_insert["first_name"] = $dados_form['first_name'];
+    //             $dados_insert["full_name"] = $dados_form['full_name'];
     //             $dados_insert["last_name"] = $dados_form['last_name'];
     //             $dados_insert["blocked"] = $dados_form['blocked'];
     //             $dados_insert['permission_name'] = $dados_form['permission_name'];

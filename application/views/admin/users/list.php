@@ -37,7 +37,7 @@
                                 <?php foreach ($users as $user) { ?>
                                     <?php if ($index) { } ?>
                                     <tr class="<?php if (isset($user->blocked) && $user->blocked) echo 'inative' ?>">
-                                        <td><?php if (isset($user->first_name)) echo $user->first_name ?></td>
+                                        <td><?php if (isset($user->full_name)) echo $user->full_name ?></td>
                                         <td><?php if (isset($user->login)) echo $user->login ?></td>
                                         <td><?php if (isset($user->email)) echo $user->email ?></td>
                                         <td><?php if (isset($user->phone)) echo $user->phone ?></td>

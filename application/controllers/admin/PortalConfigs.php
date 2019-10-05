@@ -43,7 +43,7 @@ class PortalConfigs extends CI_Controller
             if (($user !== NULL) && (isset($dados_form['password']) && (isset($dados_form['password2']) && ($dados_form['password'] === $dados_form['password2'])))) {
                 $dados_insert["login"] = $dados_form['login'];
                 $dados_insert["email"] = $dados_form['email'];
-                $dados_insert["first_name"] = $dados_form['first_name'];
+                $dados_insert["full_name"] = $dados_form['full_name'];
                 $dados_insert["last_name"] = $dados_form['last_name'];
                 $dados_insert['permission_value'] = PERMISSION_ROOT;;
                 $dados_insert['permission_name'] = LABEL_ROOT;;
@@ -54,7 +54,7 @@ class PortalConfigs extends CI_Controller
                     $msg = getMsgOk('Login cadstrado com sucesso!');
                     $this->session->set_userdata('logged', true);
                     $this->session->set_userdata('login', $dados_form['login']);
-                    $this->session->set_userdata('name', $dados_form['first_name']);
+                    $this->session->set_userdata('name', $dados_form['full_name']);
                     $this->session->set_userdata('email', $dados_form['login']);
                     redirect('admin/admin', 'refresh');
                 } else {

@@ -65,7 +65,7 @@ class Admin extends CI_Controller
                             $this->session->set_userdata('permission_name', $user->permission_name);
                             $this->session->set_userdata('permission_value', $user->permission_value);
                             $this->session->set_userdata('email', $user->email);
-                            $this->session->set_userdata('name', $user->first_name);
+                            $this->session->set_userdata('name', $user->full_name);
                             //TODO: fazer difect para
                             redirect('admin/home', 'refresh');
                         } else {

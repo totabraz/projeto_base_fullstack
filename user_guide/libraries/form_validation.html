@@ -1035,12 +1035,12 @@ the name of the method (without the “callback_” prefix):</p>
 <code class="docutils literal"><span class="pre">set_rules()</span></code> method in a language file, and therefore make the name
 able to be translated, here’s how:</p>
 <p>First, prefix your “human” name with <strong>lang:</strong>, as in this example:</p>
-<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_rules</span><span class="p">(</span><span class="s1">&#39;first_name&#39;</span><span class="p">,</span> <span class="s1">&#39;lang:first_name&#39;</span><span class="p">,</span> <span class="s1">&#39;required&#39;</span><span class="p">);</span>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_rules</span><span class="p">(</span><span class="s1">&#39;full_name&#39;</span><span class="p">,</span> <span class="s1">&#39;lang:full_name&#39;</span><span class="p">,</span> <span class="s1">&#39;required&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Then, store the name in one of your language file arrays (without the
 prefix):</p>
-<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$lang</span><span class="p">[</span><span class="s1">&#39;first_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;First Name&#39;</span><span class="p">;</span>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$lang</span><span class="p">[</span><span class="s1">&#39;full_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;First Name&#39;</span><span class="p">;</span>
 </pre></div>
 </div>
 <div class="admonition note">

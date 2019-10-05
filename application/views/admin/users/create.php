@@ -19,15 +19,15 @@
                     }
                     echo form_open();
 
-                    $form_input_first_name = isset($form_input['first_name']) ? $form_input['first_name'] : "";
+                    $form_input_full_name = isset($form_input['full_name']) ? $form_input['full_name'] : "";
                     $form_input_last_name = isset($form_input['last_name']) ? $form_input['last_name'] : "";
                     $form_input_email = isset($form_input['email']) ? $form_input['email'] : "";
                     $form_input_phone = isset($form_input['phone']) ? $form_input['phone'] : "";
                     $form_input_login = isset($form_input['login']) ? $form_input['login'] : "";
 
                     echo ' <div class="form-group">';
-                    $form_first_name = (isset($user['first_name'])) ? $user['first_name'] : '';
-                    $opts = array('name' => 'first_name', 'value' => $form_input_first_name, 'title' => 'Infome seu Nome');
+                    $form_full_name = (isset($user['full_name'])) ? $user['full_name'] : '';
+                    $opts = array('name' => 'full_name', 'value' => $form_input_full_name, 'title' => 'Infome seu Nome');
                     echo form_label('Nome:');
                     echo form_input($opts, '', $setup);
                     echo '</div>';
