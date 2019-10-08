@@ -1,24 +1,65 @@
 <?php
-/** Versão antiga, não se basear por ela */
-/** Versão antiga, não se basear por ela */
-/** Versão antiga, não se basear por ela */
-/** Versão antiga, não se basear por ela */
-/** Versão antiga, não se basear por ela */
-/** Versão antiga, não se basear por ela */
-
 defined('BASEPATH') or exit('No direct script access allowed');
 
+defined('DB_TABLE_BLOG') or define('DB_TABLE_BLOG', 'blog');
 class Blog_model extends CI_Model
 {
     var $table = 'blog';
+
     function __construct()
     {
         parent::__construct();
+        $this->load->dbforge();
+        $this->checkTableExist();
+    }
+
+    private function checkTableExist()
+    {
+        $fields = array(
+            'ID' => array(
+                'type' => 'INT',
+                'constraint' => '11',
+                'auto_increment' => TRUE
+            ),
+            'blog_title' => array(
+                'type' => 'VARCHAR',
+                'constraint' => '100',
+            ),
+            'blog_date_to_publish' => array(
+                'type' => 'DATE',
+            ),
+            'blog_author_login' => array(
+                'type' => 'VARCHAR',
+                'constraint' => '100',
+            ),
+            'blog_author_name' => array(
+                'type' => 'VARCHAR',
+                'constraint' => '100',
+            ),
+            'blog_body' => array(
+                'type' => 'LONGTEXT',
+            ),
+            'blog_img' => array(
+                'type' => 'VARCHAR',
+                'constraint' => '255',
+            ),
+            'blog_published' => array(
+                'type' => 'TINYINT',
+                'constraint' => '1',
+            ),
+        );
+        $this->dbforge->add_key('ID', TRUE);
+        $this->dbforge->add_field($fields);
+        if ($this->dbforge->create_table($this->table, TRUE)) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
     }
 
     public function save($dados)
     {
-        $dados =  (array)$dados;
+        $dados =  (array) $dados;
         if (isset($dados['ID']) && $dados['ID'] > 0) {
             // User já existe. Devo editar
             $this->db->where('ID', $dados['ID']);
@@ -34,6 +75,7 @@ class Blog_model extends CI_Model
 
     public function getAll($sort = 'ID', $limit = NULL, $offset = NULL, $order = 'asc')
     {
+
         $this->db->order_by($sort, $order);
         if ($limit)
             $this->db->limit($limit, $offset);
@@ -49,45 +91,6 @@ class Blog_model extends CI_Model
         }
     }
 
-
-    public function countAllFiltred($blog_date_published= NULL, $blog_title= NULL, $blog_body= NULL, $blog_highlight= NULL, $blog_date_to_publish= NULL, $offset = NULL, $limit = NULL)
-    {
-        if ($limit) $this->db->limit($limit, $offset);
-        if ($blog_title) $this->db->like('blog_title', $blog_title);
-        if ($blog_body) $this->db->like('blog_body', $blog_body);
-        if ($blog_highlight) $this->db->where('blog_highlight', $blog_highlight);
-        if ($blog_date_to_publish) $this->db->where('blog_date_to_publish', $blog_date_to_publish);
-        if ($blog_date_published) $this->db->where('blog_date_published', $blog_date_published);
-        $query = $this->db->get($this->table);
-        return $query->num_rows();
-    }
-
-    public function countAll($blog_date_published= NULL, $blog_title= NULL, $blog_body= NULL, $blog_highlight= NULL, $blog_date_to_publish= NULL, $offset = NULL, $limit = NULL)
-    {
-        if ($limit) $this->db->limit($limit, $offset);
-        if ($blog_title) $this->db->like('blog_title', $blog_title);
-        if ($blog_body) $this->db->like('blog_body', $blog_body);
-        if ($blog_highlight) $this->db->where('blog_highlight', $blog_highlight);
-        if ($blog_date_to_publish) $this->db->where('blog_date_to_publish', $blog_date_to_publish);
-        if ($blog_date_published) $this->db->where('blog_date_published', $blog_date_published);
-        return $this->db->count_all($this->table);
-    }
-
-    public function delete($id = 0)
-    {
-        $this->db->where('id', $id);
-        $this->db->delete($this->table);
-        return $this->db->affected_rows();
-    }
-
-    public function getBlogByBody($body = NULL)
-    {
-        return $this->getBlog($body, NULL);
-    }
-    public function getBlogByTitle($title = NULL)
-    {
-        return $this->getBlog(NULL, $title);
-    }
     public function getBlogById($id = 0)
     {
         return $this->getBlog(NULL, NULL, $id);
@@ -121,7 +124,6 @@ class Blog_model extends CI_Model
                 $return = $row;
             }
         }
-        // printInfoDump($return);
         return $return;
     }
 

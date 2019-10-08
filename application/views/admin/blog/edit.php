@@ -62,58 +62,63 @@ $blog_date_published = changeDateFromDB(isset($blog['blog_date_published']) ? $b
                                 $blog_body = isset($blog['blog_body']) ? $blog['blog_body'] : "";
                                 $blog_img = isset($blog['blog_img']) ? $blog['blog_img'] : "";
                                 $blog_published = isset($blog['blog_published']) ? $blog['blog_published'] : "";
-                                
+
                                 $blog_date_to_publish = isset($blog['blog_date_to_publish']) ? $blog['blog_date_to_publish'] : 00 - 00 - 0000;
                                 $blog_author_name = (isset($this->session->get_userdata()['name'])) ? $this->session->get_userdata()['name'] : '';
                                 $blog_author_login = (isset($this->session->get_userdata()['login'])) ? $this->session->get_userdata()['login'] : '';
 
                                 // FORM ADD NEW
+                                ?>
 
-                                
-                                echo ' <div class="form-group">';
-                                $opts = array('name' => 'blog_title', 'value' => $blog_title, 'title' => 'Infome o título');
-                                echo form_label('Título:');
-                                echo form_input($opts, '', $setup);
-                                echo '</div>';
+                                <div class="form-group">
+                                    <?php
 
+                                    $opts = array('name' => 'blog_title', 'value' => $blog_title, 'title' => 'Infome o título');
+                                    echo form_label('Título:');
+                                    echo form_input($opts, '', $setup);
+                                    ?>
+                                </div>
+                                <div class="form-group">
+                                    <?php
+                                    $opts = array('name' => 'blog_date_to_publish', 'id' => 'datepicker', 'value' => $blog_date_to_publish, 'title' => 'Infome a data a ser publicada');
+                                    echo form_label('Data para publicação:');
+                                    echo form_input($opts, '', $setup);
+                                    ?>
+                                </div>
+                                <div class="form-group">
+                                    <?php
 
-                                echo ' <div class="form-group">';
-                                $opts = array('name' => 'blog_date_to_publish', 'id' => 'datepicker', 'value' => $blog_date_to_publish, 'title' => 'Infome a data a ser publicada');
-                                echo form_label('Data para publicação:');
-                                echo form_input($opts, '', $setup);
-                                echo '</div>';
+                                    $opts = array('name' => 'blog_author_name', 'value' => $blog_author_name, 'title' => 'Autor', 'readonly' => 'readonly');
+                                    echo form_label('Autor Name:');
+                                    echo form_input($opts, '', $setup);
+                                    ?>
+                                </div>
+                                <div class="form-group">
+                                    <?php
+                                    $opts = array('name' => 'blog_author_login', 'value' => $blog_author_login, 'title' => 'Autor', 'readonly' => 'readonly');
+                                    echo form_label('Autor Login:');
+                                    echo form_input($opts, '', $setup);
+                                    ?>
+                                </div>
 
-                                echo ' <div class="form-group">';
-                                $opts = array('name' => 'blog_author_name', 'value' => $blog_author_name, 'title' => 'Autor', 'readonly' => 'readonly');
-                                echo form_label('Autor Name:');
-                                echo form_input($opts, '', $setup);
-                                echo '</div>';
-                                
-                                echo ' <div class="form-group">';
-                                $opts = array('name' => 'blog_author_login', 'value' => $blog_author_login, 'title' => 'Autor', 'readonly' => 'readonly');
-                                echo form_label('Autor Login:');
-                                echo form_input($opts, '', $setup);
-                                echo '</div>';
+                                <div class="form-group">
+                                    <?php
+                                    echo form_label('Postagem:');
+                                    $opts = array(
+                                        'name'        => 'blog_body',
+                                        // 'id'          => 'vc_desc',
+                                        'value'       => $blog_body,
+                                        'rows'        => '10',
+                                        'cols'        => '10',
+                                        'style'       => 'width:100%',
+                                        'class'       => 'form-control',
+                                        'title' => 'Postagem'
+                                    );
+                                    echo form_textarea($opts);
+                                    ?>
+                                </div>
 
-                                echo ' <div class="form-group">';
-                                echo form_label('Postagem:');
-
-                                $opts = array(
-                                    'name'        => 'blog_body',
-                                    // 'id'          => 'vc_desc',
-                                    'value'       => $blog_body,
-                                    'rows'        => '10',
-                                    'cols'        => '10',
-                                    'style'       => 'width:100%',
-                                    'class'       => 'form-control',
-                                    'title' => 'Postagem'
-                                );
-                                echo form_textarea($opts);
-                                echo '</div>';
-
-
-                                // === Add File 
-
+                                <?php // === Add File  
                                 ?>
                                 <div class="form-group">
                                     <div class="row">
@@ -129,7 +134,7 @@ $blog_date_published = changeDateFromDB(isset($blog['blog_date_published']) ? $b
 
                                         <?php if (isset($blog_img) && $blog_img != '') { ?>
                                             <figure class="col-xs-12 col-sm-6 col-md-3">
-                                                <img src="<?php echo base_url('uploads/') . $blog_img ;?>" style="width:100px; height:100px;" />
+                                                <img src="<?php echo base_url('uploads/') . $blog_img; ?>" style="width:100px; height:100px;" />
                                             </figure>
                                         <?php } ?>
                                     </div>
@@ -137,40 +142,43 @@ $blog_date_published = changeDateFromDB(isset($blog['blog_date_published']) ? $b
 
                                 <?php
                                 // ====== Habilitar/Desabilitar
-                                echo $blog_published;
-                                
-                                echo '<div class="col-xs-12 col-sm-6 form-group">';
-                                echo '<div class="row">';
-                                echo form_label('Publicada');
-                                $arrayOpts = array(
-                                    "0" => "Não",
-                                    "1" => "Sim"
-                                );
-                                $opts = array(
-                                    'autocomplete' => 'off',
-                                    'name' => 'blog_published',
-                                    'value' => $blog_published, 'title' => 'Essa notícia está publicada?',
-                                    'class' => 'form-control editorhtml col'
-                                );
-                                
-                                echo form_dropdown($opts, $arrayOpts);
-                                echo '</div>';
-                                echo '</div>';
-                                echo '</div>';
+                                ?>
+                                <div class="col-xs-12 col-sm-6 form-group">
+                                    <div class="row">
+                                        <?php
+                                        echo form_label('Publicada');
+                                        $arrayOpts = array(
+                                            "0" => "Não",
+                                            "1" => "Sim"
+                                        );
+                                        $opts = array(
+                                            'autocomplete' => 'off',
+                                            'name' => 'blog_published',
+                                            'value' => $blog_published, 'title' => 'Essa notícia está publicada?',
+                                            'class' => 'form-control editorhtml col'
+                                        );
 
-                                echo '</div>';
+                                        echo form_dropdown($opts, $arrayOpts);
+                                        ?>
+                                    </div>
+                                </div>
 
-                                // ====== Add other
+                                <?php // ====== Add other 
+                                ?>
 
-                                echo '<div class="row">';
-                                echo '<div class="pull-rihgt text-right col-xs-12">';
-                                echo form_submit(
-                                    'enviar',
-                                    'Salvar',
-                                    array('class' => 'btn btn-success pull-right')
-                                );
-                                echo '</div>';
-                                echo '</div>';
+                                <div class="row">
+                                    <div class="pull-rihgt text-right col-xs-12">
+                                        <?php
+                                        echo form_submit(
+                                            'enviar',
+                                            'Salvar',
+                                            array('class' => 'btn btn-success pull-right')
+                                        );
+                                        ?>
+                                    </div>
+                                </div>
+
+                                <?php
                                 // Form Closed
                                 echo form_close();
                                 ?>
@@ -184,9 +192,3 @@ $blog_date_published = changeDateFromDB(isset($blog['blog_date_published']) ? $b
     </div>
 </section>
 </div>
-
-
-<script>
-    var $hora = ['22', '00', '00'];
-    var $url = 'txDHMarcacao=' + $hora[0] + '%3A' + $hora[1] + '%3A' + $hora[2] + '&txHour=' + $hora[0] + '&txMinute=' + $hora[1] + '&txSeconds=' + $hora[2] + '&txLatitude=0.0&txLongitude=0.0&cboLocal=3022;';
-</script>

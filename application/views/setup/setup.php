@@ -20,7 +20,7 @@
                             
                             echo '<div class="form-group">';
                             // echo "<hr/>";
-                            echo form_label('Tipo do usuário: Administrador');
+                            echo form_label('Tipo do usuário: ' . LABEL_ROOT); 
                             echo '</div>';
                             
                             echo ' <div class="form-group">';
@@ -45,9 +45,7 @@
                             echo form_input($opts, '', $setup);
                             echo '</div>';
 
-
                             // DADOS LOGIN 
-                            
                             echo ' <div class="form-group">';
                             $form_login = (isset($user['login']))? $user['login']: '';
                             $opts = array('name' => 'login', 'value' => $form_login, 'title' => 'Infome seu Login');
@@ -67,7 +65,7 @@
 							echo '</div>';
                                                         
 							
-							echo form_submit('enviar', 'Registrar'  , array('class' => 'btn btn-outline-info'));
+							echo form_submit('enviar', 'Registrar'  , array('class' => 'btn btn-outline-info pull-right'));
 							// Form Closed
 							echo form_close();
 							?>

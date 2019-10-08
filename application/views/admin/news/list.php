@@ -13,7 +13,9 @@
 
                 <div class=" box-body">
                     <?php
-                    if ($msg = get_msg()) { echo $msg; }
+                    if ($msg = get_msg()) {
+                        echo $msg;
+                    }
                     if (isset($news) && sizeof($news) > 0) { ?>
 
                         <table id="example1" class="table table-bordered table-striped">
@@ -28,18 +30,22 @@
                             <tbody>
                                 <?php foreach ($news as $single_news) { ?>
                                     <tr>
-                                        <td class="col-xs-12"><?php if (isset($single_news->news_title)) echo $single_news->news_title ?></td>
+                                        <td class="col-xs-12">
+                                            <a href="<?php echo base_url('admin/news/editar/' . $single_news->ID) ?>" class="" title="Editar">
+                                                <?php if (isset($single_news->news_title)) echo $single_news->news_title ?>
+                                            </a>
+                                        </td>
                                         <td>
                                             <?php if (isset($single_news->news_published)) {
 
-                                                $news_published_title  = "Publicada";
-                                                $news_published_class  = "success";
+                                                        $news_published_title  = "Publicada";
+                                                        $news_published_class  = "success";
 
-                                                if ($single_news->news_published) {
-                                                    $news_published_title = "Despublicada";
-                                                    $news_published_class = "danger";
-                                                } ?>
-                                                <a href="<?php echo base_url('admin/news/changestatus/' . $single_news->ID ) ?>" class="btn btn-<?php echo $news_published_class ?>">
+                                                        if ($single_news->news_published) {
+                                                            $news_published_title = "Despublicada";
+                                                            $news_published_class = "danger";
+                                                        } ?>
+                                                <a href="<?php echo base_url('admin/news/changestatus/' . $single_news->ID) ?>" class="btn btn-<?php echo $news_published_class ?>">
                                                     <?php echo $news_published_title ?>
                                                 </a>
                                             <?php } ?>
@@ -47,22 +53,22 @@
                                         <td>
                                             <?php if (isset($single_news->news_highlight)) {
 
-                                                $news_highlight_title  = "Destaque";
-                                                $news_highlight_class  = "warning";
+                                                        $news_highlight_title  = "Destaque";
+                                                        $news_highlight_class  = "warning";
 
-                                                if ($single_news->news_highlight) {
-                                                    $news_highlight_title = "Normal";
-                                                    $news_highlight_class = "default";
-                                                } ?>
-                                            <a href="<?php echo base_url('admin/news/highlighter/' . $single_news->ID ) ?>" class="btn btn-<?php echo $news_highlight_class ?>">
-                                                <?php echo $news_highlight_title ?>
-                                            </a>
-                                            </td>
-                                            <td>
-                                                <a href="<?php echo base_url('admin/news/editar/' . $single_news->ID ) ?>" class="btn btn-small btn-info" title="Editar">
-                                                    <i class="fa fa-edit"></i>
+                                                        if ($single_news->news_highlight) {
+                                                            $news_highlight_title = "Normal";
+                                                            $news_highlight_class = "default";
+                                                        } ?>
+                                                <a href="<?php echo base_url('admin/news/highlighter/' . $single_news->ID) ?>" class="btn btn-<?php echo $news_highlight_class ?>">
+                                                    <?php echo $news_highlight_title ?>
                                                 </a>
-                                            <?php } ?>
+                                        </td>
+                                        <td>
+                                            <a href="<?php echo base_url('admin/news/editar/' . $single_news->ID) ?>" class="btn btn-small btn-info" title="Editar">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
+                                        <?php } ?>
 
                                         </td>
                                     </tr>

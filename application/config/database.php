@@ -73,14 +73,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $active_group = 'default';
 $query_builder = TRUE;
 
-defined('DATABASE_NAME')             OR define('DATABASE_NAME', "db_projeto");
+defined('DATABASE_NAME')             OR define('DATABASE_NAME', "db_projeto_base_fullstack");
 
 $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
 	'username' => 'root',
-	'password' => '',
-	'database' => DATABASE_NAME,
+    'password' => '',
+	'database' => '',
+    'database' => DATABASE_NAME,
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

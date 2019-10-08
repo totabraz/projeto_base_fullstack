@@ -3,21 +3,17 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <?php
-printInfoDump($news);
 $news_date_published = changeDateFromDB(isset($news['news_date_published']) ? $news['news_date_published'] : date('d-m-Y'));
+$news_date_to_publish = changeDateFromDB(isset($news['news_date_to_publish']) ? $news['news_date_to_publish'] : date('d-m-Y'));
 
 ?>
-<?php echo '---' . $news_date_published . '<br/>'; ?>
 <script>
     $(document).ready(function() {
         $(function() {
             $("#datepicker").datepicker();
             $('#datepicker').datepicker("option", "dateFormat", 'dd-mm-yy');
-            $("#datepicker").datepicker('setDate', <?php echo changeDateFromDB($news_date_published) ?>);
-    
-            <?php echo '---' . $news_date_published . '<br/>'; ?>
-
-            
+            $("#datepicker").datepicker('setDate', '<?php echo $news_date_to_publish ?>');
+            <?php // echo '---' . $news_date_published . '<br/>'; ?>           
         });
     });
 </script>
@@ -52,7 +48,6 @@ $news_date_published = changeDateFromDB(isset($news['news_date_published']) ? $n
                     <div class="">
                         <div class="card">
                             <div class="card-body">
-<?php echo '---' . $news_date_published . '<br/>'; ?>
 
                                 <?php
                                 $setup = array(
@@ -70,8 +65,8 @@ $news_date_published = changeDateFromDB(isset($news['news_date_published']) ? $n
                                 $news_highlight = isset($news['news_highlight']) ? $news['news_highlight'] : 0;
                                 $news_date_to_publish = isset($news['news_date_to_publish']) ? $news['news_date_to_publish'] : 00-00-0000;
                                 $news_published = isset($news['news_published']) ? $news['news_published'] : 1;
+                                
                                 // FORM ADD NEW
-
                                 echo ' <div class="form-group">';
                                 $opts = array('name' => 'news_title', 'value' => $news_title, 'title' => 'Infome o título');
                                 echo form_label('Título:');

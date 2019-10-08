@@ -85,7 +85,10 @@ if (!function_exists('verificaLoginAdmin')) {
 
 
 if (!function_exists('config_upload')) {
-    function config_upload($path = './uploads', $types = 'pdf|doc|docx|PDF|DOC|DOCX', $size = 10240)
+    // ATENTION!!!! 
+    // At the folder ./uploads
+    // set de permission to  777 #chmod 777 ./uploads
+    function config_upload($path = './uploads/', $types = 'pdf|doc|docx|PDF|DOC|DOCX', $size = 10240)
     {
         $config['upload_path'] = $path;
         $config['allowed_types'] = $types;
@@ -96,7 +99,10 @@ if (!function_exists('config_upload')) {
 
 
 if (!function_exists('config_upload_doc')) {
-    function config_upload_doc($path = './uploads', $types = 'pdf|doc|docx|PDF|DOC|DOCX', $size = 10240)
+    // ATENTION!!!! 
+    // At the folder ./uploads
+    // set de permission to  777 #chmod 777 ./uploads
+    function config_upload_doc($path = './uploads/', $types = 'pdf|doc|docx|PDF|DOC|DOCX', $size = 10240)
     {
         $config['upload_path'] = $path;
         $config['allowed_types'] = $types;
@@ -106,7 +112,10 @@ if (!function_exists('config_upload_doc')) {
 }
 
 if (!function_exists('config_upload_img')) {
-    function config_upload_img($path = './uploads', $types = 'png|jpg|jpeg|PNG|JPG|JPEG', $size = 1536)
+    // ATENTION!!!! 
+    // At the folder ./uploads
+    // set de permission to  777 #chmod 777 ./uploads
+    function config_upload_img($path = './uploads/', $types = 'png|jpg|jpeg|PNG|JPG|JPEG', $size = 1536)
     {
         $config['upload_path'] = $path;
         $config['allowed_types'] = $types;
@@ -134,10 +143,12 @@ if (!function_exists('changeDateToDB')) {
     {
         if (isset($date)) {
             if (strpos($date, '-') !== false) {
-
                 $date = explode("-", $date);
-                if (strlen($date[2]) > strlen($date[0])) $date = $date[2] . '-' . $date[1] . '-' . $date[0];
-                else $date = $date[0] . '-' . $date[1] . '-' . $date[2];
+                if (strlen($date[2]) > strlen($date[0])) {
+                    $date = $date[2] . '-' . $date[1] . '-' . $date[0];
+                } else {
+                    $date = $date[0] . '-' . $date[1] . '-' . $date[2];
+                }
             }
             return $date;
         }
@@ -148,10 +159,12 @@ if (!function_exists('changeDateFromDB')) {
     {
         if (isset($date)) {
             if (strpos($date, '-') !== false) {
-
                 $date = explode("-", $date);
-                if (strlen($date[2]) > strlen($date[0])) $date = $date[0] . '-' . $date[1] . '-' . $date[2];
-                else $date = $date[2] . '-' . $date[1] . '-' . $date[0];
+                if (strlen($date[2]) > strlen($date[0])) {
+                    $date = $date[0] . '-' . $date[1] . '-' . $date[2];
+                } else {
+                    $date = $date[2] . '-' . $date[1] . '-' . $date[0];
+                }
             }
 
             return $date;
@@ -293,7 +306,7 @@ if (!function_exists('getPermissionValue')) {
 if (!function_exists('removeBasicWords')) {
     function removeBasicWords($word = '')
     { {
-        if (isset($word) && !is_array($word)) {    
+            if (isset($word) && !is_array($word)) {
                 $word = rtrim(str_replace(' da ',  ' ', $word));
                 $word = rtrim(str_replace(' de ',  ' ', $word));
                 $word = rtrim(str_replace(' di ',  ' ', $word));

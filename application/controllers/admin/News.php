@@ -35,7 +35,7 @@ class News extends CI_Controller
         if ($idNews > 0) {
             // ID informado, continuar a edição
             if ($news = $this->news->getNewsById($idNews)) {
-                $dados['news'] = (array)$news;
+                $dados['news'] = (array) $news;
 
                 // Regras de validação
                 $this->form_validation->set_rules('news_title', 'Titulo', 'trim|required');
@@ -49,121 +49,59 @@ class News extends CI_Controller
                         set_msg(getMsgError(validation_errors()));
                     }
                 } else {
-
                     $dados['news']["news_title"] = $dados_form['news_title'];
                     $dados['news']["news_date_to_publish"] = changeDateToDB($dados_form['news_date_to_publish']);
                     $dados['news']["news_date_published"] = changeDateToDB($dados_form['news_date_published']);
                     $dados['news']["news_body"] = $dados_form['news_body'];
                     $dados['news']["news_highlight"] = $dados_form['news_highlight'];
 
-
+                    
+                    // $config['upload_path'] = './uploads/';
+                    // $config['allowed_types'] = 'gif|jpg|png';
+                    // $config['max_size']     = '100';
+                    // $config['max_width'] = '1024';
+                    // $config['max_height'] = '768';
+                    // $this->load->library('upload', $config);
                     $this->load->library('upload', config_upload_img());
+                    echo 'foi 1';
                     if ($this->upload->do_upload('news_img')) {
+                        echo 'foi 2';
                         $dados_upload = $this->upload->data();
+                        echo 'foi 3';
                         $dados['news']["news_img"] = $dados_upload['file_name'];
+                        echo 'foi 4';
+                        set_msg($this->upload->display_errors());
+                        echo 'foi 5';
+                    } else {
+                        printInfoDump(array('error' => $this->upload->display_errors()));
                     }
 
                     // salvar no banco
+                    printInfoDump($dados['news']);
                     if ($this->news->save($dados['news'])) {
-                        set_msg(getMsgOk('Notícia cadastrada!'));
+                        // set_msg(getMsgOk('Notícia cadastrada!'));
                     } else {
-                        set_msg(getMsgError('Problemas atualizar notícia!'));
+                        // set_msg(getMsgError('Sem mudanças ou problemas ao atualizar'));
                     }
-
-
-                    //  em cima
-                    // 
-                    // 
-                    // 
                 }
             } else {
-                set_msg(getMsgError('Erro! ID da notícia inexistente!'));
+                // set_msg(getMsgError('Erro! ID da notícia inexistente!'));
                 redirect('admin/news/listar', 'refresh');
             }
         } else {
-            set_msg(getMsgError('Erro! Notícia não encontrado!'));
+            // set_msg(getMsgError('Erro! Notícia não encontrado!'));
             redirect('admin/news/listar', 'refresh');
         }
 
-
         $dados['form_input'] = $dados_form;
-        $dados['title']     = 'Cadastrar Nova';
-        
+        $dados['title']     = 'Editar';
+
         // carrega view
         $this->load->view('admin/includes/head');
         $this->load->view('admin/includes/header', $dados);
         $this->load->view('admin/news/edit', $dados);
         $this->load->view('admin/includes/footer');
     }
-
-
-
-    //         //verificar a validação 
-    //         if ($this->form_validation->run() == FALSE) {
-    //             if (validation_errors()) {
-    //                 set_msg(getMsgError(validation_errors()));
-    //             }
-    //             if (sizeof($dados_form) > 0) {
-    //                 if (isset($dados_form['login'])) $dados['user']['login'] = $dados_form['login'];
-    //                 if (isset($dados_form['email'])) $dados['user']['email'] = $dados_form['email'];
-    //                 if (isset($dados_form['phone'])) $dados['user']['phone'] = $dados_form['phone'];
-    //                 if (isset($dados_form['full_name'])) $dados['user']['full_name'] = $dados_form['full_name'];
-    //                 if (isset($dados_form['last_name'])) $dados['user']['last_name'] = $dados_form['last_name'];
-    //                 if (isset($dados_form['blocked'])) $dados['user']['blocked'] = $dados_form['blocked'];
-    //                 if (isset($dados_form['permission_name'])) {
-    //                     $dados['user']['permission_name'] = $dados_form['permission_name'];
-    //                     $dados['user']['permission_value'] = getPermissionValue($dados_form['permission_name']);;
-    //                 }
-    //             }
-    //         } else {
-    //             $dados_insert['ID'] = $user->ID;
-    //             $dados_insert["login"] = $dados_form['login'];
-    //             $dados_insert["email"] = $dados_form['email'];
-    //             $dados_insert["phone"] = $dados_form['phone'];
-    //             $dados_insert["full_name"] = $dados_form['full_name'];
-    //             $dados_insert["last_name"] = $dados_form['last_name'];
-    //             $dados_insert["blocked"] = $dados_form['blocked'];
-    //             $dados_insert['permission_name'] = $dados_form['permission_name'];
-    //             $dados_insert['permission_value'] = getPermissionValue($dados_form['permission_name']);
-    //             $dados['user'] = $dados_insert;
-
-    //             $samePassWord = TRUE;
-    //             $changePS = TRUE;
-    //             if (isset($dados_form['password']) && isset($dados_form['password2']) && !($dados_form['password'] == '' || $dados_form['password2'] == '')) {
-    //                 if ($dados_form['password'] === $dados_form['password2']) {
-    //                     $changePS = FALSE;
-    //                     $dados_insert["password"] = password_hash($dados_form['password'], PASSWORD_DEFAULT);
-    //                 } else {
-    //                     $samePassWord = FALSE;
-    //                     $msg = getMsgError('Senhas não conferem.');
-    //                 }
-    //             }
-
-    //             if ($this->user->save($dados_insert)) {
-    //                 if ($changePS) $msg = getMsgOk('Dados atualizados. [Mesma senha]');
-    //                 else $msg = getMsgOk('Dados atualizados.[Senhas atualizadas]');
-    //             } else {
-    //                 if ($samePassWord) {
-    //                     $msg = getMsgError('Ops! Algo aconteceu, tente novamente.');
-    //                 } else {
-    //                     $msg = getMsgError('Senhas não conferem.');
-    //                 }
-    //             }
-    //             set_msg($msg);
-    //         }
-    //         $this->input->post(NULL);
-
-    //         // carrega view
-    //         $this->load->view('admin/includes/head');
-    //         $this->load->view('admin/includes/header');
-    //         $this->load->view('admin/news/edit', $dados);
-    //         $this->load->view('admin/includes/footer');
-    //     } else {
-    //         set_msg(getMsgError('Você não ter permissão pra editar um usuário: ' . LABEL_ROOT));
-    //         redirect('admin/users/listar', 'refresh');
-    //     }
-    // }
-
 
     public function list()
     {

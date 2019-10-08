@@ -54,7 +54,6 @@ class Users extends CI_Controller
             $this->form_validation->set_rules('email', 'E-mail', 'trim|required|valid_email|min_length[8]');
             $this->form_validation->set_rules('phone', 'Telefone', 'trim|required|min_length[10]');
             $this->form_validation->set_rules('full_name', 'Nome', 'trim|required|min_length[3]');
-            $this->form_validation->set_rules('last_name', 'Sobrenome', 'trim|required|min_length[3]');
             $this->form_validation->set_rules('permission_name', 'Tipo Usuário', 'trim|required|min_length[4]');
             $this->form_validation->set_rules('blocked', 'Estado do Usuário', 'required');
             $dados_form = $this->input->post();
@@ -69,7 +68,6 @@ class Users extends CI_Controller
                     if (isset($dados_form['email'])) $dados['user']['email'] = $dados_form['email'];
                     if (isset($dados_form['phone'])) $dados['user']['phone'] = $dados_form['phone'];
                     if (isset($dados_form['full_name'])) $dados['user']['full_name'] = $dados_form['full_name'];
-                    if (isset($dados_form['last_name'])) $dados['user']['last_name'] = $dados_form['last_name'];
                     if (isset($dados_form['blocked'])) $dados['user']['blocked'] = $dados_form['blocked'];
                     if (isset($dados_form['permission_name'])) {
                         $dados['user']['permission_name'] = $dados_form['permission_name'];
@@ -82,7 +80,6 @@ class Users extends CI_Controller
                 $dados_insert["email"] = $dados_form['email'];
                 $dados_insert["phone"] = $dados_form['phone'];
                 $dados_insert["full_name"] = $dados_form['full_name'];
-                $dados_insert["last_name"] = $dados_form['last_name'];
                 $dados_insert["blocked"] = $dados_form['blocked'];
                 $dados_insert['permission_name'] = $dados_form['permission_name'];
                 $dados_insert['permission_value'] = getPermissionValue($dados_form['permission_name']);
@@ -176,7 +173,6 @@ class Users extends CI_Controller
         $this->form_validation->set_rules('login', 'Login', 'trim|required|min_length[4]');
         $this->form_validation->set_rules('email', 'E-mail', 'trim|required|valid_email|min_length[8]');
         $this->form_validation->set_rules('full_name', 'Nome', 'trim|required|min_length[3]');
-        $this->form_validation->set_rules('last_name', 'Sobrenome', 'trim|required|min_length[3]');
         $this->form_validation->set_rules('phone', 'Telefone', 'trim|required|min_length[10]');
         $this->form_validation->set_rules('permission_name', 'Tipo Usuário', 'trim|required|min_length[4]');
         $this->form_validation->set_rules('password', 'Senha', 'trim|required|min_length[8]');
@@ -194,7 +190,6 @@ class Users extends CI_Controller
                 $dados_insert["email"] = $dados_form['email'];
                 $dados_insert["phone"] = $dados_form['phone'];
                 $dados_insert["full_name"] = $dados_form['full_name'];
-                $dados_insert["last_name"] = $dados_form['last_name'];
                 $dados_insert['permission_name'] = $dados_form['permission_name'];
                 $dados_insert['permission_value'] = getPermissionValue($dados_form['permission_name']);
                 $dados_insert["password"] = password_hash($dados_form['password'], PASSWORD_DEFAULT);
@@ -229,57 +224,6 @@ class Users extends CI_Controller
         $this->load->view('admin/includes/footer');
     }
 
-
-
-    /*
-
-	public function excluir(){
-		// Verificar login da sessão
-		verificaLogin();
-		$idDocumento = $this->uri->segment(4);
-		if ($idDocumento > 0){
-			if($user = $this->user->getDocumento($idDocumento)){
-				$dados['user'] = $user;
-			} else {
-				set_msg(getMsgError('Erro! Documento inexistente! Escolha um user para excluir !'));
-				redirect('dashboard/users/listar','refresh');
-			}
-		} else {
-			set_msg(getMsgError('Erro! ID_Documento não encontrado!'));
-			redirect('dashboard/users/listar','refresh');
-		}
-		$this->form_validation->set_rules('excluir', 'Excluir', 'trim|required'); 
-		//verificar a validação 
-		if($this->form_validation->run() == FALSE) {
-			if (validation_errors()) {
-                set_msg(getMsgError(validation_errors()));
-			}
-		} else {
-			$arquivoPath = 'uploads/' . $user->arquivo;
-			if ($this->user->excluirDocumento($idDocumento)){
-				unlink($arquivoPath);
-				set_msg(getMsgOk('Documento excluida com sucesso!'));
-				redirect('dashboard/users/listar','refresh');
-			} else {
-				set_msg(getMsgError('Nenhum user foi excluida!'));
-				redirect('dashboard/users/listar','refresh');
-			}
-		}
-
-		// carrega view
-		$dados['title']		=  'Listagem de Documentos';
-		$dados['subtitle']  =  'Excluir do notícias';
-		$dados['tela'] 		=  'excluir';
-		$dados['sidenav'] = 'edit-doc';
-		$this->load->view('includes/head', $dados);
-		$this->load->view('dashboard/includes/side-nav.php', $dados);
-		$this->load->view('dashboard/users', $dados);
-		$this->load->view('includes/footer', $dados);
-	}
-     */
-
-
-
     public function myprofile()
     {
         // Verificar login da sessão
@@ -293,7 +237,6 @@ class Users extends CI_Controller
         $this->form_validation->set_rules('email', 'E-mail', 'trim|required|valid_email|min_length[8]');
         $this->form_validation->set_rules('phone', 'Telefone', 'trim|required|min_length[10]');
         $this->form_validation->set_rules('full_name', 'Nome', 'trim|required|min_length[3]');
-        $this->form_validation->set_rules('last_name', 'Sobrenome', 'trim|required|min_length[3]');
         $this->form_validation->set_rules('permission_name', 'Tipo Usuário', 'trim|required|min_length[4]');
         $this->form_validation->set_rules('blocked', 'Estado do Usuário', 'required');
         $dados_form = $this->input->post();
@@ -310,7 +253,6 @@ class Users extends CI_Controller
                 if (isset($dados_form['email'])) $dados['user']['email'] = $dados_form['email'];
                 if (isset($dados_form['phone'])) $dados['user']['phone'] = $dados_form['phone'];
                 if (isset($dados_form['full_name'])) $dados['user']['full_name'] = $dados_form['full_name'];
-                if (isset($dados_form['last_name'])) $dados['user']['last_name'] = $dados_form['last_name'];
                 if (isset($dados_form['blocked'])) $dados['user']['blocked'] = $dados_form['blocked'];
                 if (isset($dados_form['permission_name'])) {
                     $dados['user']['permission_name'] = $dados_form['permission_name'];
@@ -322,7 +264,6 @@ class Users extends CI_Controller
                 $dados_insert["email"] = $dados_form['email'];
                 $dados_insert["phone"] = $dados_form['phone'];
                 $dados_insert["full_name"] = $dados_form['full_name'];
-                $dados_insert["last_name"] = $dados_form['last_name'];
                 $dados_insert["blocked"] = $dados_form['blocked'];
                 $dados_insert['permission_name'] = $dados_form['permission_name'];
                 $dados_insert['permission_value'] = getPermissionValue($dados_form['permission_name']);

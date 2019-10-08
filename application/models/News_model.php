@@ -11,11 +11,53 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class News_model extends CI_Model
 {
     var $table = 'news';
+    
     function __construct()
     {
         parent::__construct();
+        $this->load->dbforge();
+        $this->checkTableExist();
     }
 
+    private function checkTableExist(){
+        $fields = array(
+            'ID' => array(
+                'type' => 'INT',
+                'constraint' => 11,
+                'auto_increment' => TRUE
+            ),
+            'news_title' => array(
+                'type' => 'VARCHAR',
+                'constraint' => 100,
+            ),
+            'news_date_to_publish' => array(
+                'type' => 'DATE'
+            ),
+            'news_date_published' => array(
+                'type' => 'DATE'
+            ),
+            'news_body' => array(
+                'type' => 'LONGTEXT'
+            ),
+            'news_highlight' => array(
+                'type' => 'TINYINT',
+                'constraint' => '1',
+            ),
+            'news_img' => array(
+                'type' => 'VARCHAR',
+                'constraint' => '255'
+            ),
+        );
+        $this->dbforge->add_key('ID', TRUE);
+        $this->dbforge->add_field($fields);
+        if ($this->dbforge->create_table($this->table, TRUE)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+   
     public function save($dados)
     {
         $dados =  (array)$dados;

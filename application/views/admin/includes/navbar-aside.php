@@ -116,14 +116,14 @@ switch ($permission_value) {
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="treeview menu-open">
                     <a href="#">
-                        <i class="fa fa-inbox"></i>&nbsp;<span>Notícias OKKKK</span>
+                        <i class="fa fa-inbox"></i>&nbsp;<span>Notícias OK v2</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
                         </span>
                     </a>
                     <?php $display = ($menuActiveSplited == 'news') ? 'block' : 'block'; ?>
                     <ul class="treeview-menu " style="display:<?php echo $display ?>">
-                        <li><a href="<?php echo base_url('admin/news/cadastrar'); ?>"><i class="fa fa-circle<?php if ($menuActive == 'news/create') echo " "; ?>-o"></i>&nbsp;Nova Postagem</a></li>
+                        <li><a href="<?php echo base_url('admin/news/cadastrar'); ?>"><i class="fa fa-circle<?php if ($menuActive == 'news/create') echo " "; ?>-o"></i>&nbsp;Nova Notícia</a></li>
                         <li><a href="<?php echo base_url('admin/news/listar'); ?>"><i class="fa fa-circle<?php if ($menuActive == 'news/list') echo " "; ?>-o"></i>&nbsp;Listar</a></li>
                     </ul>
                 </li>
@@ -143,7 +143,7 @@ switch ($permission_value) {
                     </a>
                     <?php $display = ($menuActiveSplited == 'blog') ? 'block' : 'block'; ?>
                     <ul class="treeview-menu " style="display:<?php echo $display ?>">
-                        <li><a href="<?php echo base_url('admin/blog/cadastrar'); ?>"><i class="fa fa-circle<?php if ($menuActive == 'blog/create') echo " "; ?>-o"></i>&nbsp;Nova Notícia</a></li>
+                        <li><a href="<?php echo base_url('admin/blog/cadastrar'); ?>"><i class="fa fa-circle<?php if ($menuActive == 'blog/create') echo " "; ?>-o"></i>&nbsp;Nova Postagem</a></li>
                         <li><a href="<?php echo base_url('admin/blog/listar'); ?>"><i class="fa fa-circle<?php if ($menuActive == 'blog/list') echo " "; ?>-o"></i>&nbsp;Listar</a></li>
                     </ul>
                 </li>

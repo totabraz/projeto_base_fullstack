@@ -76,7 +76,7 @@ class Blog extends CI_Controller
         }
 
         $dados['form_input'] = $dados_form;
-        $dados['title']     = 'Cadastrar Nova';
+        $dados['title']     = 'Editar Postagem';
         $dados['menuActive'] = 'blog/edit';
 
         // carrega view
