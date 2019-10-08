@@ -93,6 +93,8 @@ if (!function_exists('config_upload')) {
         $config['upload_path'] = $path;
         $config['allowed_types'] = $types;
         $config['max_size'] = $size;
+        // $config['max_width']     = 1024;
+        // $config['max_height']    = 768;
         return $config;
     }
 }
@@ -107,6 +109,8 @@ if (!function_exists('config_upload_doc')) {
         $config['upload_path'] = $path;
         $config['allowed_types'] = $types;
         $config['max_size'] = $size;
+        // $config['max_width']     = 1024;
+        // $config['max_height']    = 768;
         return $config;
     }
 }
@@ -120,6 +124,8 @@ if (!function_exists('config_upload_img')) {
         $config['upload_path'] = $path;
         $config['allowed_types'] = $types;
         $config['max_size'] = $size;
+        // $config['max_width']     = 1024;
+        // $config['max_height']    = 768;
         return $config;
     }
 }
