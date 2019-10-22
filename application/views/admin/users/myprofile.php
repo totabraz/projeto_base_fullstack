@@ -27,7 +27,6 @@
                     echo form_open();
 
                     $form_input_full_name = isset($user['full_name']) ? $user['full_name'] : "";
-                    $form_input_last_name = isset($user['last_name']) ? $user['last_name'] : "";
                     $form_input_email = isset($user['email']) ? $user['email'] : "";
                     $form_input_phone = isset($user['phone']) ? $user['phone'] : "";
                     $form_input_login = isset($user['login']) ? $user['login'] : "";
@@ -39,13 +38,6 @@
                     $form_full_name = (isset($user['full_name'])) ? $user['full_name'] : '';
                     $opts = array('autocomplete' => 'off', 'name' => 'full_name', 'value' => $form_input_full_name, 'title' => 'Infome seu Nome');
                     echo form_label('Nome:');
-                    echo form_input($opts, '', $setup);
-                    echo '</div>';
-
-                    echo ' <div class="form-group">';
-                    $form_last_name = (isset($user['last_name'])) ? $user['last_name'] : '';
-                    $opts = array('autocomplete' => 'off', 'name' => 'last_name', 'value' => $form_input_last_name, 'title' => 'Infome seu Sobrenome');
-                    echo form_label('Sobrenome:');
                     echo form_input($opts, '', $setup);
                     echo '</div>';
 
@@ -129,13 +121,13 @@
                     echo '</div>';
 
                     echo '<div class="form-group">';
-                    $opts = array('autocomplete' => 'off', 'name' => 'password', 'title' => 'Infome sua Senha', 'placeholder' => 'Senha', 'value' => '');
+                    $opts = array('autocomplete' => 'off', 'name' => 'password', 'title' => 'Infome sua Senha (deixar em branco para não editar)', 'placeholder' => 'Senha (deixar em branco para não editar)', 'value' => '');
                     echo form_label('Senha');
                     echo form_password($opts, '', $setup);
                     echo '</div>';
 
                     echo '<div class="form-group ">';
-                    $opts = array('autocomplete' => 'off', 'name' => 'password2', 'title' => 'Repita sua Senha', 'placeholder' => 'Repitir Senha', 'value' => '');
+                    $opts = array('autocomplete' => 'off', 'name' => 'password2', 'title' => 'Repita sua Senha (deixar em branco para não editar)', 'placeholder' => 'Repitir Senha (deixar em branco para não editar)', 'value' => '');
                     echo form_password($opts, '', $setup);
                     echo '</div>';
 

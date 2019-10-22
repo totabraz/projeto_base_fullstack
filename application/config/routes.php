@@ -92,3 +92,11 @@ $route['admin/perfil']			    	            = 'dashboard/dashboard/perfil';
 $route['admin/artigo']			    	            = 'dashboard/dashboard/perfil';
 $route['admin/evento']			    	            = 'dashboard/dashboard/perfil';
 $route['admin/minicurs']			                = 'dashboard/dashboard/perfil';
+
+
+// V2 V2 V2 V2 V2 V2 V2 V2 V2 V2 V2 V2 V2 V2 V2 V2 V2 V2 V2 V2 V2 V2 V2 V2 V2 
+// V2 V2 V2 V2 V2 V2 V2 V2 V2 V2 V2 V2 V2 V2 V2 V2 V2 V2 V2 V2 V2 V2 V2 V2 V2 
+// V2 V2 V2 V2 V2 V2 V2 V2 V2 V2 V2 V2 V2 V2 V2 V2 V2 V2 V2 V2 V2 V2 V2 V2 V2 
+
+
+$route['admin/site/config']			                = 'admin/portalconfigs/contact';

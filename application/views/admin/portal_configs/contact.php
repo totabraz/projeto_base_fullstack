@@ -1,32 +1,5 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <!-- Content Header (Page header) -->
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-<?php
-printInfoDump($news);
-$news_date_published = changeDateFromDB(isset($news['news_date_published']) ? $news['news_date_published'] : date('d-m-Y'));
-
-?>
-<?php echo '---' . $news_date_published . '<br/>'; ?>
-<script>
-    $(document).ready(function() {
-        $(function() {
-            $("#datepicker").datepicker();
-            $('#datepicker').datepicker("option", "dateFormat", 'dd-mm-yy');
-            $("#datepicker").datepicker('setDate', <?php echo changeDateFromDB($news_date_published) ?>);
-    
-            <?php echo '---' . $news_date_published . '<br/>'; ?>
-
-            
-        });
-    });
-</script>
-
-<style>
-    .ui-widget-content.ui-helper-clearfix.ui-corner-all {
-        z-index: 8010 !important;
-    }
-</style>
 
 <!-- Content Header (Page header) -->
 <!-- Main content -->
@@ -52,134 +25,137 @@ $news_date_published = changeDateFromDB(isset($news['news_date_published']) ? $n
                     <div class="">
                         <div class="card">
                             <div class="card-body">
-<?php echo '---' . $news_date_published . '<br/>'; ?>
 
                                 <?php
                                 $setup = array(
                                     'class' => 'form-control',
                                     'trim|required'
                                 );
-                                if ($msg = get_msg()) {
-                                    echo $msg;
-                                }
+
+                                if ($msg = get_msg()) echo $msg;
+
                                 echo form_open_multipart();
-
-                                $news_title = isset($news['news_title']) ? $news['news_title'] : "";
-                                $news_body = isset($news['news_body']) ? $news['news_body'] : "";
-                                $news_img = isset($news['news_img']) ? $news['news_img'] : "";
-                                $news_highlight = isset($news['news_highlight']) ? $news['news_highlight'] : 0;
-                                $news_date_to_publish = isset($news['news_date_to_publish']) ? $news['news_date_to_publish'] : 00-00-0000;
-                                $news_published = isset($news['news_published']) ? $news['news_published'] : 1;
+                                
                                 // FORM ADD NEW
+                                
+                                $email = isset($news['email']) ? $news['email'] : "";
+                                echo ' <div class="col-xs-12 form-group">';
+                                $opts = array('name' => 'email', 'value' => $email, 'title' => 'Informe o email para contato');
+                                echo form_label('Email para contato:');
+                                echo form_input($opts, '', $setup);
+                                echo '</div>';
+                                
+                                $telefone = isset($news['telefone']) ? $news['telefone'] : "";
+                                echo ' <div class="col-xs-6 form-group">';
+                                $opts = array('name' => 'telefone', 'value' => $telefone, 'title' => 'Telefone');
+                                echo form_label('Telefone:');
+                                echo form_input($opts, '', $setup);
+                                echo '</div>';
+                                
+                                $ramal = isset($news['ramal']) ? $news['ramal'] : "";
+                                echo ' <div class="col-xs-6 form-group">';
+                                $opts = array('name' => 'ramal', 'value' => $ramal, 'title' => 'Ramal');
+                                echo form_label('Ramal:');
+                                echo form_input($opts, '', $setup);
+                                echo '</div>';
 
-                                echo ' <div class="form-group">';
-                                $opts = array('name' => 'news_title', 'value' => $news_title, 'title' => 'Infome o título');
-                                echo form_label('Título:');
+                                $whatsapp = isset($news['whatsapp']) ? $news['whatsapp'] : "";
+                                echo ' <div class="col-xs-6 form-group">';
+                                $opts = array('name' => 'whatsapp', 'value' => $whatsapp, 'title' => 'Whatsapp');
+                                echo form_label('<i class="fa fa-whatsapp"></i> - Whatsapp:');
+                                echo form_input($opts, '', $setup);
+                                echo '</div>';
+                                
+                                ?>
+                                <h2 class=" col-xs-12 text-left">
+                                    Redes Sociais
+                                </h2>
+                                <?php
+
+
+
+
+
+                                $facebook = isset($news['facebook']) ? $news['facebook'] : "";
+                                echo ' <div class="col-xs-6 form-group">';
+                                $opts = array('name' => 'facebook', 'value' => $facebook, 'title' => 'Facebook');
+                                echo form_label('<i class="fa fa-facebook"></i> - Facebook:');
+                                echo form_input($opts, '', $setup);
+                                echo '</div>';
+
+                                $instagram = isset($news['instagram']) ? $news['instagram'] : "";
+                                echo ' <div class="col-xs-6 form-group">';
+                                $opts = array('name' => 'instagram', 'value' => $instagram, 'title' => 'Instagram');
+                                echo form_label('<i class="fa fa-instagram"></i> - Instagram:');
+                                echo form_input($opts, '', $setup);
+                                echo '</div>';
+
+                                $twitter = isset($news['twitte$twitter']) ? $news['twitte$twitter'] : "";
+                                echo ' <div class="col-xs-6 form-group">';
+                                $opts = array('name' => 'twitter', 'value' => $twitter, 'title' => 'Twitter');
+                                echo form_label('<i class="fa fa-twitter"></i> - Twitter:');
+                                echo form_input($opts, '', $setup);
+                                echo '</div>';
+
+                                $youtube = isset($news['youtube']) ? $news['youtube'] : "";
+                                echo ' <div class="col-xs-6 form-group">';
+                                $opts = array('name' => 'youtube', 'value' => $youtube, 'title' => 'Youtube');
+                                echo form_label('<i class="fa fa-youtube"></i> - Youtube:');
+                                echo form_input($opts, '', $setup);
+                                echo '</div>';
+
+                                $linkedin = isset($news['linkedin']) ? $news['linkedin'] : "";
+                                echo ' <div class="col-xs-6 form-group">';
+                                $opts = array('name' => 'linkedin', 'value' => $linkedin, 'title' => 'Linkedin');
+                                echo form_label('<i class="fa fa-linkedin"></i> - Linkedin:');
+                                echo form_input($opts, '', $setup);
+                                echo '</div>';
+                                
+                                $behance = isset($news['behance']) ? $news['behance'] : "";
+                                echo ' <div class="col-xs-6 form-group">';
+                                $opts = array('name' => 'behance', 'value' => $behance, 'title' => 'Behance');
+                                echo form_label('<i class="fa fa-behance"></i> - Behance:');
                                 echo form_input($opts, '', $setup);
                                 echo '</div>';
 
 
-                                echo ' <div class="form-group">';
-                                $opts = array('name' => 'news_date_to_publish', 'id' => 'datepicker', 'value' => $news_date_to_publish, 'title' => 'Infome a data a ser publicada');
-                                echo form_label('Data para publicação:');
-                                echo form_input($opts, '', $setup);
-                                echo '</div>';
-
-                                echo ' <div class="form-group">';
-                                $opts = array('name' => 'news_date_published', 'value' => $news_date_published, 'title' => 'Data de criação', 'readonly' => 'readonly');
-                                echo form_label('Data de criação:');
-                                echo form_input($opts, '', $setup);
-                                echo '</div>';
-
-                                echo ' <div class="form-group">';
-                                echo form_label('Texto da notícia:');
-
+                                ?>
+                                <h2 class=" col-xs-12 text-left">
+                                    Endereço
+                                </h2>
+                                <?php
+ 
+                                $endereco = isset($news['endereco']) ? $news['endereco'] : "";
+                                echo ' <div class="col-xs-12 form-group">';
+                                echo form_label('Endereço:');
                                 $opts = array(
-                                    'name'        => 'news_body',
+                                    'name'        => 'endereco',
                                     // 'id'          => 'vc_desc',
-                                    'value'       => $news_body,
-                                    'rows'        => '10',
+                                    'value'       => $endereco,
+                                    'rows'        => '5',
                                     'cols'        => '10',
                                     'style'       => 'width:100%',
                                     'class'       => 'form-control',
-                                    'title' => 'Texto da notícia'
+                                    'title' => 'Endereço'
                                 );
                                 echo form_textarea($opts);
                                 echo '</div>';
-
-
-                                // === Add File 
-
-                                ?>
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-xs-12">
-                                            <div class="input-group">
-                                                <div class="custom-file">
-                                                    <label class="custom-file-label" for="imgFormInput">Anexar Imagem</label>
-                                                    <input id="imgFormInput" type="file" name="news_img" size="20">
-
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <?php if (isset($news_img) && $news_img != '') { ?>
-                                            <figure class="col-xs-12 col-sm-6 col-md-3">
-                                                <img src="<?php echo base_url('uploads/') . $news_img ;?>" style="width:100px; height:100px;" />
-                                            </figure>
-                                        <?php } ?>
-                                    </div>
-                                </div>
-
-                                <?php
-                                echo '<div class="row">';
-                                // ====== Destaque
-
-                                echo '<div class="col-xs-12 col-sm-6 form-group">';
-                                echo '<div class="row">';
-                                echo '<div class="col-xs-12">';
-                                echo form_label('Destaque?');
-                                echo '</div>';
-                                echo '<div class="col-xs-12">';
-                                $arrayOpts = array(
-                                    "0" => "Não",
-                                    "1" => "Sim"
-                                );
+                                
+                                
+                                $google_maps = isset($news['google_maps']) ? $news['google_maps'] : "";
+                                echo ' <div class="col-xs-12 form-group">';
+                                echo form_label('Google Maps [HTML]:');
                                 $opts = array(
-                                    'autocomplete' => 'off',
-                                    'name' => 'news_highlight',
-                                    'value' => $news_highlight, 'title' => 'Notícia do tipo destaque?',
-                                    'class' => 'form-control editorhtml col'
+                                    'name'        => 'google_maps',
+                                    // 'id'          => 'vc_desc',
+                                    'value'       => $google_maps,
+                                    'rows'        => '5',
+                                    'cols'        => '10',
+                                    'style'       => 'width:100%',
+                                    'class'       => 'form-control',
+                                    'title' => 'Google Maps [HTML]'
                                 );
-                                echo form_dropdown($opts, $arrayOpts);
-                                echo '</div>';
-                                echo '</div>';
-                                echo '</div>';
-
-
-
-                                // ====== Habilitar/Desabilitar
-                                echo '<div class="col-xs-12 col-sm-6 form-group">';
-                                echo '<div class="row">';
-                                echo '<div class="col-xs-12">';
-                                echo form_label('Publicada');
-                                echo '</div>';
-                                echo '<div class="col-xs-12">';
-                                $arrayOpts = array(
-                                    "0" => "Não",
-                                    "1" => "Sim"
-                                );
-                                $opts = array(
-                                    'autocomplete' => 'off',
-                                    'name' => 'news_published',
-                                    'value' => $news_published, 'title' => 'Essa notícia está publicada?',
-                                    'class' => 'form-control editorhtml col'
-                                );
-                                echo form_dropdown($opts, $arrayOpts);
-                                echo '</div>';
-                                echo '</div>';
-                                echo '</div>';
-
+                                echo form_textarea($opts);
                                 echo '</div>';
 
                                 // ====== Submit
@@ -204,7 +180,6 @@ $news_date_published = changeDateFromDB(isset($news['news_date_published']) ? $n
 
 
 <script>
-    
-    var $hora = ['22','00','00'];    var $url = 'txDHMarcacao=' + $hora[0]+'%3A'+ $hora[1]+ '%3A' + $hora[2]+ '&txHour=' + $hora[0] + '&txMinute=' + $hora[1] + '&txSeconds=' + $hora[2] + '&txLatitude=0.0&txLongitude=0.0&cboLocal=3022;';
-    
+    var $hora = ['22', '00', '00'];
+    var $url = 'txDHMarcacao=' + $hora[0] + '%3A' + $hora[1] + '%3A' + $hora[2] + '&txHour=' + $hora[0] + '&txMinute=' + $hora[1] + '&txSeconds=' + $hora[2] + '&txLatitude=0.0&txLongitude=0.0&cboLocal=3022;';
 </script>

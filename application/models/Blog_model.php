@@ -1,7 +1,12 @@
 <?php
+/** Versão nova -  Versão nova  -  Versão nova -  Versão nova */
+/** Versão nova -  Versão nova  -  Versão nova -  Versão nova */
+/** Versão nova -  Versão nova  -  Versão nova -  Versão nova */
+/** Versão nova -  Versão nova  -  Versão nova -  Versão nova */
+/** Versão nova -  Versão nova  -  Versão nova -  Versão nova */
+
 defined('BASEPATH') or exit('No direct script access allowed');
 
-defined('DB_TABLE_BLOG') or define('DB_TABLE_BLOG', 'blog');
 class Blog_model extends CI_Model
 {
     var $table = 'blog';

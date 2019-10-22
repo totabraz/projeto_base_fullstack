@@ -1,17 +1,16 @@
 <?php
-/** Versão antiga, não se basear por ela */
-/** Versão antiga, não se basear por ela */
-/** Versão antiga, não se basear por ela */
-/** Versão antiga, não se basear por ela */
-/** Versão antiga, não se basear por ela */
-/** Versão antiga, não se basear por ela */
+/** Versão nova -  Versão nova  -  Versão nova -  Versão nova */
+/** Versão nova -  Versão nova  -  Versão nova -  Versão nova */
+/** Versão nova -  Versão nova  -  Versão nova -  Versão nova */
+/** Versão nova -  Versão nova  -  Versão nova -  Versão nova */
+/** Versão nova -  Versão nova  -  Versão nova -  Versão nova */
 
 defined('BASEPATH') or exit('No direct script access allowed');
 
 class News_model extends CI_Model
 {
     var $table = 'news';
-    
+
     function __construct()
     {
         parent::__construct();
@@ -19,7 +18,8 @@ class News_model extends CI_Model
         $this->checkTableExist();
     }
 
-    private function checkTableExist(){
+    private function checkTableExist()
+    {
         $fields = array(
             'ID' => array(
                 'type' => 'INT',
@@ -57,10 +57,10 @@ class News_model extends CI_Model
         }
     }
 
-   
+
     public function save($dados)
     {
-        $dados =  (array)$dados;
+        $dados =  (array) $dados;
         if (isset($dados['ID']) && $dados['ID'] > 0) {
             // User já existe. Devo editar
             $this->db->where('ID', $dados['ID']);
@@ -91,8 +91,7 @@ class News_model extends CI_Model
         }
     }
 
-
-    public function countAllFiltred($news_date_published= NULL, $news_title= NULL, $news_body= NULL, $news_highlight= NULL, $news_date_to_publish= NULL, $offset = NULL, $limit = NULL)
+    public function countAllFiltred($news_date_published = NULL, $news_title = NULL, $news_body = NULL, $news_highlight = NULL, $news_date_to_publish = NULL, $offset = NULL, $limit = NULL)
     {
         if ($limit) $this->db->limit($limit, $offset);
         if ($news_title) $this->db->like('news_title', $news_title);
@@ -104,7 +103,7 @@ class News_model extends CI_Model
         return $query->num_rows();
     }
 
-    public function countAll($news_date_published= NULL, $news_title= NULL, $news_body= NULL, $news_highlight= NULL, $news_date_to_publish= NULL, $offset = NULL, $limit = NULL)
+    public function countAll($news_date_published = NULL, $news_title = NULL, $news_body = NULL, $news_highlight = NULL, $news_date_to_publish = NULL, $offset = NULL, $limit = NULL)
     {
         if ($limit) $this->db->limit($limit, $offset);
         if ($news_title) $this->db->like('news_title', $news_title);
@@ -115,7 +114,6 @@ class News_model extends CI_Model
         return $this->db->count_all($this->table);
     }
 
-
     public function delete($id = 0)
     {
         $this->db->where('id', $id);
@@ -123,19 +121,21 @@ class News_model extends CI_Model
         return $this->db->affected_rows();
     }
 
-
     public function getNewsByBody($body = NULL)
     {
         return $this->getNews($body, NULL);
     }
+
     public function getNewsByTitle($title = NULL)
     {
         return $this->getNews(NULL, $title);
     }
+
     public function getNewsById($id = 0)
     {
         return $this->getNews(NULL, NULL, $id);
     }
+
     private function getNews($title = NULL, $body = NULL, $id = 0)
     {
         $return = NULL;
@@ -168,12 +168,4 @@ class News_model extends CI_Model
         // printInfoDump($return);
         return $return;
     }
-
-
-
-    /**
-     * =================================
-     *        REMOVE SE NÃO USAR
-     * =================================
-     */
 }

@@ -22,7 +22,6 @@
                     echo form_open();
 
                     $form_input_full_name = isset($user['full_name']) ? $user['full_name'] : "";
-                    $form_input_last_name = isset($user['last_name']) ? $user['last_name'] : "";
                     $form_input_email = isset($user['email']) ? $user['email'] : "";
                     $form_input_phone = isset($user['phone']) ? $user['phone'] : "";
                     $form_input_login = isset($user['login']) ? $user['login'] : "";
@@ -33,14 +32,7 @@
                     echo ' <div class="form-group">';
                     $form_full_name = (isset($user['full_name'])) ? $user['full_name'] : '';
                     $opts = array('autocomplete' => 'off', 'name' => 'full_name', 'value' => $form_input_full_name, 'title' => 'Infome seu Nome');
-                    echo form_label('Nome:');
-                    echo form_input($opts, '', $setup);
-                    echo '</div>';
-
-                    echo ' <div class="form-group">';
-                    $form_last_name = (isset($user['last_name'])) ? $user['last_name'] : '';
-                    $opts = array('autocomplete' => 'off', 'name' => 'last_name', 'value' => $form_input_last_name, 'title' => 'Infome seu Sobrenome');
-                    echo form_label('Sobrenome:');
+                    echo form_label('Nome Completo:');
                     echo form_input($opts, '', $setup);
                     echo '</div>';
 

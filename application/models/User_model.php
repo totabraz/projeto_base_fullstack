@@ -67,7 +67,6 @@ class User_model extends CI_Model
     public function save($dados)
     {
         $dados =  (array) $dados;
-        echo "chegou?";
         if (isset($dados['ID']) && $dados['ID'] > 0) {
             // User já existe. Devo editar
             $this->db->where('ID', $dados['ID']);

@@ -84,7 +84,7 @@
                         </table>
                     <?php } else { ?>
                         <p>Nenhuma notícia cadastrada</p>
-                        <a href="<?php echo base_url('admin/news/cadastrar') ?>" class="btn btn-success">Cadastrar Notícias</a>
+                        <a href="<?php echo base_url('admin/news/cadastrar') ?>" class="btn btn-success">Nova Notícias</a>
                     <?php }  ?>
                 </div>
                 <!-- /.box-body -->

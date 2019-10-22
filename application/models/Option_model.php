@@ -1,4 +1,10 @@
 <?php
+/** Versão nova -  Versão nova  -  Versão nova -  Versão nova */
+/** Versão nova -  Versão nova  -  Versão nova -  Versão nova */
+/** Versão nova -  Versão nova  -  Versão nova -  Versão nova */
+/** Versão nova -  Versão nova  -  Versão nova -  Versão nova */
+/** Versão nova -  Versão nova  -  Versão nova -  Versão nova */
+
 defined('BASEPATH') or exit('No direct script access allowed');
 
 class Option_model extends CI_Model

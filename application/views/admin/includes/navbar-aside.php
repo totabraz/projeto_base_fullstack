@@ -251,7 +251,7 @@ switch ($permission_value) {
                 <ul class="sidebar-menu" data-widget="tree">
                     <li class="treeview menu-open">
                         <a href="#">
-                            <i class="fa fa-line-chart"></i>&nbsp;<span>Google Analytics</span>
+                            <i class="fa fa-line-chart"></i>&nbsp;<span>Google Analytics OK v2</span>
                             <span class="pull-right-container">
                                 <i class="fa fa-angle-left pull-right"></i>
                             </span>
@@ -268,14 +268,14 @@ switch ($permission_value) {
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="treeview menu-open">
                     <a href="#">
-                        <i class="fa fa-cog"></i>&nbsp;<span>Minhas Configurações OKKKK</span>
+                        <i class="fa fa-cog"></i>&nbsp;<span>Meu Perfil OK v2</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
                         </span>
                     </a>
                     <?php $display = ($menuActiveSplited == 'config') ? 'block' : 'block'; ?>
                     <ul class="treeview-menu " style="display:<?php echo $display ?>">
-                        <li><a href="<?php echo base_url('admin/users/meuperfil'); ?>"><i class="fa fa-circle<?php if ($menuActive == 'users/myprofile') echo " "; ?>-o"></i>&nbsp;Meu Perfil</a></li>
+                        <li><a href="<?php echo base_url('admin/users/meuperfil'); ?>"><i class="fa fa-circle<?php if ($menuActive == 'users/myprofile') echo " "; ?>-o"></i>&nbsp;Editar</a></li>
                     </ul>
                 </li>
             </ul>

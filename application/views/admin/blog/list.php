@@ -69,8 +69,8 @@
                             </tfoot>
                         </table>
                     <?php } else { ?>
-                        <p>Nenhuma notícia cadastrada</p>
-                        <a href="<?php echo base_url('admin/blog/cadastrar') ?>" class="btn btn-success">Cadastrar Notícias</a>
+                        <p>Nenhuma postagem cadastrada</p>
+                        <a href="<?php echo base_url('admin/blog/cadastrar') ?>" class="btn btn-success">Nova Postagem</a>
                     <?php }  ?>
                 </div>
                 <!-- /.box-body -->
