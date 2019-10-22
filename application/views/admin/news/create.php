@@ -8,11 +8,11 @@ $news_date_published = changeDateFromDB(isset($news['news_date_published']) ? $n
 ?>
 <script>
     $(document).ready(function() {
-        $(function() {
-            $("#datepicker").datepicker();
-            $('#datepicker').datepicker("option", "dateFormat", 'dd-mm-yy');
-            $("#datepicker").datepicker('setDate', <?php echo changeDateFromDB($news_date_published) ?>);
+        $("#datepicker").datepicker({
+            "dateFormat": 'dd-mm-yy',
+            "minDate": '<?php echo changeDateFromDB($news_date_published) ?>',
         });
+        $("#datepicker").datepicker('setDate', '<?php echo changeDateFromDB($news_date_published) ?>');
     });
 </script>
 
@@ -116,7 +116,7 @@ $news_date_published = changeDateFromDB(isset($news['news_date_published']) ? $n
 
                                         <?php if (isset($news_img) && $news_img != '') { ?>
                                             <figure class="col-xs-12 col-sm-6 col-md-3">
-                                                <img src="<?php echo base_url('uploads/') . $news_img ;?>" style="width:100px; height:100px;" />
+                                                <img src="<?php echo base_url('uploads/') . $news_img; ?>" style="width:100px; height:100px;" />
                                             </figure>
                                         <?php } ?>
                                     </div>

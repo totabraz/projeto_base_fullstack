@@ -99,12 +99,33 @@ table>tbody>tr>td:last-of-type {
 	align-items: center;
 
 	&.-mf-left {
-        *+*{ margin-right: 5px;}
+		*+* {
+			margin-right: 5px;
+		}
+
 		justify-content: flex-start;
 	}
 
 	&.-mf-right {
-        *+*{ margin-left: 5px;}
+		*+* {
+			margin-left: 5px;
+		}
+
 		justify-content: flex-end;
+	}
+}
+
+label>input {
+	margin-left: 5px;
+}
+
+.user-panel {
+	.info {
+		width: calc(100% - 55px);
+		overflow: hidden;
+
+		p {
+			overflow: hidden;
+		}
 	}
 }

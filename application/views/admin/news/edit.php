@@ -9,12 +9,11 @@ $news_date_to_publish = changeDateFromDB(isset($news['news_date_to_publish']) ? 
 ?>
 <script>
     $(document).ready(function() {
-        $(function() {
-            $("#datepicker").datepicker();
-            $('#datepicker').datepicker("option", "dateFormat", 'dd-mm-yy');
-            $("#datepicker").datepicker('setDate', '<?php echo $news_date_to_publish ?>');
-            <?php // echo '---' . $news_date_published . '<br/>'; ?>           
+        $("#datepicker").datepicker({
+            "dateFormat": 'dd-mm-yy',
+            "minDate": '<?php echo changeDateFromDB($news_date_published) ?>',
         });
+        $("#datepicker").datepicker('setDate', '<?php echo changeDateFromDB($news_date_published) ?>');
     });
 </script>
 
