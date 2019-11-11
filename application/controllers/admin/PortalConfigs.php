@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class PortalConfigs extends CI_Controller
+class Portalconfigs extends CI_Controller
 {
 
     function __construct()
