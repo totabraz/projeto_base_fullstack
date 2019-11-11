@@ -78,13 +78,20 @@ $route['admin/news/editar/:num']                    = 'admin/news/edit';
 
 $route['admin/blog']              	                = 'admin/blog/list';
 $route['admin/blog/listar']              	        = 'admin/blog/list';
+$route['admin/blog/categorias']                     = 'admin/blog/categories';
+$route['admin/blog/categorias/:num']                = 'admin/blog/categories_exclude';
+$route['admin/blog/cidades']                        = 'admin/blog/cities';
+$route['admin/blog/cidades/:num']                   = 'admin/blog/cities_exclude';
 $route['admin/blog/cadastrar']                      = 'admin/blog/create';
 $route['admin/blog/blocker/:num']                   = 'admin/blog/blocker';
 $route['admin/blog/editar/:num']                    = 'admin/blog/edit';
 
 $route['admin/site/config/analytics']               = 'admin/portalconfigs/analytics';
+$route['admin/site/config/ads']                     = 'admin/portalconfigs/ads';
 $route['admin/site/config/contato']                 = 'admin/portalconfigs/contact';
 $route['admin/site/config/redessociais']            = 'admin/portalconfigs/contact';
+$route['admin/site/config/endereco']                = 'admin/portalconfigs/contact';
+$route['admin/site/config/googlemaps']              = 'admin/portalconfigs/contact';
 
 
 $route['cadastrar']						            = 'dashboard/dashboard/cadastrar';

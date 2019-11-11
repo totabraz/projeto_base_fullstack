@@ -186,7 +186,7 @@ class User_model extends CI_Model
                 $return = $row;
             }
         }
-        // printInfoDump($return);
+
         return $return;
     }
 }

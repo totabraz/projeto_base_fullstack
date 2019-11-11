@@ -6,13 +6,14 @@ $news_date_published = changeDateFromDB(isset($news['news_date_published']) ? $n
 ?>
 
 <script>
-$(document).ready(function() {
+    $(document).ready(function() {
         $("#datepicker").datepicker({
             "dateFormat": 'dd-mm-yy',
             "minDate": '<?php echo changeDateFromDB($news_date_published) ?>',
         });
         $("#datepicker").datepicker('setDate', '<?php echo changeDateFromDB($news_date_published) ?>');
-    });</script>
+    });
+</script>
 
 <style>
     .ui-widget-content.ui-helper-clearfix.ui-corner-all {
@@ -32,7 +33,7 @@ $(document).ready(function() {
                         <strong class="text-uppercase">Blog</strong> - <em>
                             <?php
                             if (isset($title)) echo $title;
-                            else echo "Nova/Editar Notícia";
+                            else echo "Nova/Editar Postagem";
                             ?>
                         </em>
                     </h1>
@@ -53,11 +54,13 @@ $(document).ready(function() {
                                     echo $msg;
                                 }
                                 echo form_open_multipart();
-                                $blog_title = isset($blog['blog_title']) ? $blog['blog_title'] : "";
-                                $blog_body = isset($blog['blog_body']) ? $blog['blog_body'] : "";
-                                $blog_img = isset($blog['blog_img']) ? $blog['blog_img'] : "";
-                                $blog_published = isset($blog['blog_published']) ? $blog['blog_published'] : TRUE;
-                                $blog_date_to_publish = isset($blog['blog_date_to_publish']) ? $blog['blog_date_to_publish'] : 1;
+                                $blog_title = isset($form_input['blog_title']) ? $form_input['blog_title'] : "";
+                                $blog_categoria = isset($form_input['blog_categoria']) ? $form_input['blog_categoria'] : '';
+                                $blog_cidade = isset($form_input['blog_cidade']) ? $form_input['blog_cidade'] : '';
+                                $blog_body = isset($form_input['blog_body']) ? $form_input['blog_body'] : "";
+                                $blog_img = isset($form_input['blog_img']) ? $form_input['blog_img'] : "";
+                                $blog_published = isset($form_input['blog_published']) ? $form_input['blog_published'] : TRUE;
+                                $blog_date_to_publish = isset($form_input['blog_date_to_publish']) ? $form_input['blog_date_to_publish'] : 1;
                                 $blog_author_name = (isset($this->session->get_userdata()['name'])) ? $this->session->get_userdata()['name'] : '';
                                 $blog_author_login = (isset($this->session->get_userdata()['login'])) ? $this->session->get_userdata()['login'] : '';
                                 // FORM ADD NEW
@@ -94,6 +97,62 @@ $(document).ready(function() {
                                     ?>
                                 </div>
 
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-6 form-group">
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <?php echo form_label('Categorias:'); ?>
+                                            </div>
+                                            <div class="col-xs-12">
+                                                <?php
+                                                $arrayOpts["sem_categoria"] = 'Sem Categoria';
+                                                if (isset($blog_categorias)) {
+                                                    for ($i = 0; $i < sizeof($blog_categorias); $i++) {
+                                                        $arrayOpts[$blog_categorias[$i]->blog_categoria_id] = $blog_categorias[$i]->blog_categoria;
+                                                    }
+                                                }
+                                                $opts = array(
+                                                    'autocomplete' => 'off',
+                                                    'name' => 'blog_categoria',
+                                                    'value' => $blog_categoria, 'title' => 'Categoria da postagem',
+                                                    'class' => 'form-control editorhtml col'
+                                                );
+                                                echo form_dropdown($opts, $arrayOpts);
+                                                ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 form-group">
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <?php echo form_label('Cidades:'); ?>
+                                            </div>
+                                            <div class="col-xs-12">
+                                                <?php
+                                                $arrayOptsCidades["todas_cidades"] = 'Todas as Cidades';
+                                                if (isset($blog_cidades)) {
+                                                    for ($i = 0; $i < sizeof($blog_cidades); $i++) {
+                                                        $arrayOptsCidades[$blog_cidades[$i]->blog_cidade_id] = $blog_cidades[$i]->blog_cidade;
+                                                    }
+                                                }
+                                                $blog_cidade = (isset($blog_cidade)) ? $blog_cidade : " ";
+                                                
+                                                $opts = array(
+                                                    'autocomplete' => 'off',
+                                                    'name' => 'blog_cidade',
+                                                    'value' => $blog_cidade, 'title' => 'Fitro de Cidade',
+                                                    'class' => 'form-control editorhtml col'
+                                                );
+                                                echo form_dropdown($opts, $arrayOptsCidades);
+                                                ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
                                 <div class="form-group">
                                     <?php
                                     echo form_label('Postagem:');
@@ -119,7 +178,7 @@ $(document).ready(function() {
                                         <div class="col-xs-12">
                                             <div class="input-group">
                                                 <div class="custom-file">
-                                                    <label class="custom-file-label" for="imgFormInput">Anexar Imagem</label>
+                                                    <label class="custom-file-label" for="imgFormInput">Anexar Imagem:</label>
                                                     <input id="imgFormInput" type="file" name="blog_img" size="20">
 
                                                 </div>
@@ -138,7 +197,7 @@ $(document).ready(function() {
                                     <div class="col-xs-12 col-sm-6 form-group">
                                         <div class="row">
                                             <div class="col-xs-12">
-                                                <?php echo form_label('Publicada'); ?>
+                                                <?php echo form_label('Publicada:'); ?>
                                             </div>
                                             <div class="col-xs-12">
                                                 <?php
@@ -150,7 +209,7 @@ $(document).ready(function() {
                                                 $opts = array(
                                                     'autocomplete' => 'off',
                                                     'name' => 'blog_published',
-                                                    'value' => $blog_published, 'title' => 'Essa notícia está publicada?',
+                                                    'value' => $blog_published, 'title' => 'Essa postagem está publicada?',
                                                     'class' => 'form-control editorhtml col'
                                                 );
                                                 echo form_dropdown($opts, $arrayOpts);
@@ -158,7 +217,6 @@ $(document).ready(function() {
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
 
                                 <div class="pull-rihgt text-right middle-flex -mf-right">

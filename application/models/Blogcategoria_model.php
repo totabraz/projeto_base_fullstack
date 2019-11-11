@@ -7,9 +7,9 @@
 
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Blog_model extends CI_Model
+class Blogcategoria_model extends CI_Model
 {
-    var $table = 'blog_posts';
+    var $table = 'blog_categoria';
 
     function __construct()
     {
@@ -26,40 +26,14 @@ class Blog_model extends CI_Model
                 'constraint' => '11',
                 'auto_increment' => TRUE
             ),
-            'blog_title' => array(
-                'type' => 'VARCHAR',
-                'constraint' => '100',
-            ),
-            'blog_date_to_publish' => array(
-                'type' => 'DATE',
-            ),
-            'blog_author_login' => array(
-                'type' => 'VARCHAR',
-                'constraint' => '100',
-            ),
-            'blog_author_name' => array(
+            'blog_categoria_id' => array(
                 'type' => 'VARCHAR',
                 'constraint' => '100',
             ),
             'blog_categoria' => array(
                 'type' => 'VARCHAR',
                 'constraint' => '100',
-            ),
-            'blog_cidade' => array(
-                'type' => 'VARCHAR',
-                'constraint' => '100',
-            ),
-            'blog_body' => array(
-                'type' => 'LONGTEXT',
-            ),
-            'blog_img' => array(
-                'type' => 'VARCHAR',
-                'constraint' => '255',
-            ),
-            'blog_published' => array(
-                'type' => 'TINYINT',
-                'constraint' => '1',
-            ),
+            )
         );
         $this->dbforge->add_key('ID', TRUE);
         $this->dbforge->add_field($fields);
@@ -88,7 +62,6 @@ class Blog_model extends CI_Model
 
     public function getAll($sort = 'ID', $limit = NULL, $offset = NULL, $order = 'asc')
     {
-
         $this->db->order_by($sort, $order);
         if ($limit)
             $this->db->limit($limit, $offset);
@@ -104,11 +77,11 @@ class Blog_model extends CI_Model
         }
     }
 
-    public function getBlogById($id = 0)
+    public function getBlogCategoriaById($id = 0)
     {
-        return $this->getBlog(NULL, NULL, $id);
+        return $this->getBlogCategoria(NULL, NULL, $id);
     }
-    private function getBlog($title = NULL, $body = NULL, $id = 0)
+    private function getBlogCategoria($title = NULL, $body = NULL, $id = 0)
     {
         $return = NULL;
         if (isset($title)) {
@@ -140,6 +113,11 @@ class Blog_model extends CI_Model
         return $return;
     }
 
+	public function remove($id = 0){
+		$this->db->where('id',$id);
+		$this->db->delete($this->table);
+		return $this->db->affected_rows();
+	}
 
 
     /**

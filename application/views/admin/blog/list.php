@@ -22,7 +22,7 @@
                             <thead>
                                 <tr>
                                     <th>Título</th>
-                                    <th class="text-center">Publicada</th>
+                                    <th class="text-center">Situação</th>
                                     <th class="text-center">Data de Publicação</th>
                                     <th class="text-center">Ações</th>
                                 </tr>
@@ -43,7 +43,7 @@
                                                     $blog_published_title = "Despublicada";
                                                     $blog_published_class = "danger";
                                                 } ?>
-                                                <a href="<?php echo base_url('admin/blog/changestatus/' . $single_blog->ID) ?>" class="btn btn-<?php echo $blog_published_class ?>">
+                                                <a href="<?php echo base_url('admin/blog/changeSituação/' . $single_blog->ID) ?>" class="btn btn-<?php echo $blog_published_class ?>">
                                                     <?php echo $blog_published_title ?>
                                                 </a>
                                             <?php } ?>
@@ -62,7 +62,7 @@
                             <tfoot>
                                 <tr>
                                     <th>Título</th>
-                                    <th class="text-center">Publicada</th>
+                                    <th class="text-center">Situação</th>
                                     <th class="text-center">Data de Publicação</th>
                                     <th class="text-center">Ações</th>
                                 </tr>

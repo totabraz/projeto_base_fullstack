@@ -153,9 +153,7 @@ class Users extends CI_Controller
 
         $dados['users'] = $this->user->getAll();
         $user = $this->user->getMyUserInfo();
-        printInfoDump($user);
         $dados['userID'] = $user->ID;
-        // printInfoDump($user);
         $dados['menuActive'] = 'users/list';
         // carrega view
         $this->load->view('admin/includes/head');
@@ -168,7 +166,6 @@ class Users extends CI_Controller
     {
         // Verificar login da sessão
         verificaLoginAdmin();
-
         // Regras de validação
         $this->form_validation->set_rules('login', 'Login', 'trim|required|min_length[4]');
         $this->form_validation->set_rules('email', 'E-mail', 'trim|required|valid_email|min_length[8]');

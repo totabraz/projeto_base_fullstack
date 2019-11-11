@@ -107,7 +107,7 @@ $news_date_published = changeDateFromDB(isset($news['news_date_published']) ? $n
                                         <div class="col-xs-12">
                                             <div class="input-group">
                                                 <div class="custom-file">
-                                                    <label class="custom-file-label" for="imgFormInput">Anexar Imagem</label>
+                                                    <label class="custom-file-label" for="imgFormInput">Anexar Imagem:</label>
                                                     <input id="imgFormInput" type="file" name="news_img" size="20">
 
                                                 </div>
@@ -153,7 +153,7 @@ $news_date_published = changeDateFromDB(isset($news['news_date_published']) ? $n
                                 echo '<div class="col-xs-12 col-sm-6 form-group">';
                                 echo '<div class="row">';
                                 echo '<div class="col-xs-12">';
-                                echo form_label('Publicada');
+                                echo form_label('Publicada:');
                                 echo '</div>';
                                 echo '<div class="col-xs-12">';
                                 $arrayOpts = array(

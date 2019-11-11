@@ -11,12 +11,7 @@
             <div class="box">
                 <section class="content-header">
                     <h1 class=" col-xs-12 text-center">
-                        <strong class="text-uppercase">Config. do Portal</strong> - <em>
-                            <?php
-                            if (isset($title)) echo $title;
-                            else echo "Google Maps";
-                            ?>
-                        </em>
+                        <strong class="text-uppercase">Config. do Portal</strong> - <em>Ads</em>
                     </h1>
                 </section>
                 <hr class="" />

@@ -344,4 +344,17 @@ if (!function_exists('removeBasicWords')) {
             return $input;
         }
     }
+
+    if (!function_exists('transformInID')) {
+        function transformInID($input)
+        {
+            if (isset($input) && !is_array($input)) {
+                $input = preg_replace("#[^A-Za-z1-9-\s]#","", $input);
+                $input = trim(preg_replace('/\s+/', ' ', $input));
+                $input = trim(preg_replace('/\s/', '_', $input));
+                $input = strtolower($input);
+            }
+            return $input;
+        }
+    }
 }

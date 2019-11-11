@@ -23,6 +23,10 @@ class Blog extends CI_Controller
         // Verificar login da sessão
         verificaLoginAdmin();
         $dados = [];
+        $this->load->model('blogcategoria_model', 'categoriamodel');
+        $this->load->model('blogcidade_model', 'cidademodel');
+        $dados['blog_categorias'] = $this->categoriamodel->getAll();
+        $dados['blog_cidades'] = $this->cidademodel->getAll();
 
         //Verifica se o ID foi passado
         $idBlog = ($this->uri->segment(4)) ? $this->uri->segment(4) : 0;
@@ -32,7 +36,6 @@ class Blog extends CI_Controller
             // ID informado, continuar a edição
             if ($blog = $this->blog->getBlogById($idBlog)) {
                 $dados['blog'] = (array)$blog;
-
                 // Regras de validação
                 $this->form_validation->set_rules('blog_title', 'Titulo', 'trim|required');
                 $this->form_validation->set_rules('blog_body', 'Corpo da notícia', 'trim|required');
@@ -51,6 +54,8 @@ class Blog extends CI_Controller
                     $dados['blog']["blog_published"] = $dados_form['blog_published'];
                     $dados['blog']["blog_author_name"] = $dados_form['blog_author_name'];
                     $dados['blog']["blog_body"] = $dados_form['blog_body'];
+                    $dados['blog']["blog_cidade"] = $dados_form['blog_cidade'];
+                    $dados['blog']["blog_categoria"] = $dados_form['blog_categoria'];
 
 
                     $this->load->library('upload', config_upload_img());
@@ -104,6 +109,10 @@ class Blog extends CI_Controller
     {
         // Verificar login da sessão
         verificaLoginAdmin();
+        $this->load->model('blogcategoria_model', 'categoriamodel');
+        $this->load->model('blogcidade_model', 'cidademodel');
+        $dados['blog_categorias'] = $this->categoriamodel->getAll();
+        $dados['blog_cidades'] = $this->cidademodel->getAll();
 
         // Regras de validação
         $this->form_validation->set_rules('blog_title', 'Titulo', 'trim|required');
@@ -122,6 +131,9 @@ class Blog extends CI_Controller
             $dados_insert["blog_author_login"] = $dados_form['blog_author_login'];
             $dados_insert["blog_author_name"] = $dados_form['blog_author_name'];
             $dados_insert["blog_body"] = $dados_form['blog_body'];
+            $dados_insert["blog_categoria"] = $dados_form['blog_categoria'];
+            $dados_insert["blog_cidade"] = $dados_form['blog_cidade'];
+            $dados_insert["blog_categoria"] = $dados_form['blog_categoria'];
             $this->load->library('upload', config_upload_img());
 
             if ($this->upload->do_upload('blog_img')) {
@@ -148,7 +160,7 @@ class Blog extends CI_Controller
         $this->load->view('admin/blog/create', $dados);
         $this->load->view('admin/includes/footer');
     }
-
+    
     public function highlighter()
     {
         $id = ($this->uri->segment(4)) ? $this->uri->segment(4) : NULL;
@@ -160,7 +172,7 @@ class Blog extends CI_Controller
         }
         redirect('admin/blog/listar', 'refresh');
     }
-
+    
 
     public function changestatus()
     {
@@ -173,5 +185,160 @@ class Blog extends CI_Controller
             set_msg(getMsgError('Problemas ao atualizar!'));
         }
         redirect('admin/blog/listar', 'refresh');
+    }
+
+
+    public function categories()
+    {
+        // Verificar login da sessão
+        verificaLoginAdmin();
+        $this->load->model('blogcategoria_model', 'categoriamodel');
+        // Regras de validação
+        $this->form_validation->set_rules('blog_categoria', 'Categoria', 'trim|required|min_length[5]');
+        $dados_form = $this->input->post();
+
+        //verificar a validação 
+        if ($this->form_validation->run() == false) {
+            if (validation_errors()) {
+                set_msg(getMsgError(validation_errors()));
+            }
+        } else {
+            $dados_insert["blog_categoria"] = trim(preg_replace('/\s+/', ' ', $dados_form['blog_categoria']));
+            $dados_insert["blog_categoria_id"] = transformInID($dados_form['blog_categoria']);
+
+            // salvar no banco
+            if ($id = $this->categoriamodel->save($dados_insert)) {
+                set_msg(getMsgOk('Notícia cadastrada!'));
+                if (isset($dados_form['addmore']) && $dados_form['addmore']) redirect('admin/blog/cadastrar', 'refresh');
+                else  redirect('admin/blog/categorias', 'refresh');
+            } else {
+                set_msg(getMsgError('Problemas ao cadastrada usuário!'));
+            }
+        }
+        $dados['blog_categorias'] = $this->categoriamodel->getAll();
+        $dados['menuActive'] = 'blog/categorias';
+        // carrega view
+        $this->load->view('admin/includes/head');
+        $this->load->view('admin/includes/header', $dados);
+        $this->load->view('admin/blog/categories', $dados);
+        $this->load->view('admin/includes/footer');
+    }         
+
+    public function categories_exclude()
+    {
+        // Verificar login da sessão
+        verificaLoginAdmin();
+        $this->load->model('blogcategoria_model', 'categoriamodel');
+        
+        $dados = [];
+        //Verifica se o ID foi passado
+        $id = ($this->uri->segment(4)) ? $this->uri->segment(4) : 0;
+    
+        if (isset($id)){
+
+            if ($this->categoriamodel->remove($id)) {
+                set_msg(getMsgOk('Categoria removida!'));
+            } else {
+                set_msg(getMsgError('Problemas ao remover!'));
+            }
+        }
+        redirect('admin/blog/categorias', 'refresh');
+
+
+        // carrega view
+        $this->load->view('admin/includes/head');
+        $this->load->view('admin/includes/header', $dados);
+        $this->load->view('admin/blog/categories', $dados);
+        $this->load->view('admin/includes/footer');
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /**
+     * =========================================
+     * =============== CITIES ==================
+     * =========================================
+     */
+
+
+    public function cities()
+    {
+        // Verificar login da sessão
+        verificaLoginAdmin();
+        $this->load->model('blogcidade_model', 'cidademodel');
+        // Regras de validação
+        $this->form_validation->set_rules('blog_cidade', 'Cidade', 'trim|required|min_length[5]');
+        $dados_form = $this->input->post();
+
+        //verificar a validação 
+        if ($this->form_validation->run() == false) {
+            if (validation_errors()) {
+                set_msg(getMsgError(validation_errors()));
+            }
+        } else {
+            $dados_insert["blog_cidade"] = trim(preg_replace('/\s+/', ' ', $dados_form['blog_cidade']));
+            $dados_insert["blog_cidade_id"] = transformInID($dados_form['blog_cidade']);
+
+            // salvar no banco
+            if ($id = $this->cidademodel->save($dados_insert)) {
+                set_msg(getMsgOk('Cidade cadastrada!'));
+                if (isset($dados_form['addmore']) && $dados_form['addmore']) redirect('admin/blog/cadastrar', 'refresh');
+                else  redirect('admin/blog/cidades', 'refresh');
+            } else {
+                set_msg(getMsgError('Problemas ao cadastrada!'));
+            }
+        }
+        $dados['blog_cidades'] = $this->cidademodel->getAll();
+        $dados['menuActive'] = 'blog/cidades';
+        // carrega view
+        $this->load->view('admin/includes/head');
+        $this->load->view('admin/includes/header', $dados);
+        $this->load->view('admin/blog/cities', $dados);
+        $this->load->view('admin/includes/footer');
+    }         
+
+    public function cities_exclude()
+    {
+        // Verificar login da sessão
+        verificaLoginAdmin();
+        $this->load->model('blogcategoria_model', 'categoriamodel');
+        
+        $dados = [];
+        //Verifica se o ID foi passado
+        $id = ($this->uri->segment(4)) ? $this->uri->segment(4) : 0;
+    
+        if (isset($id)){
+
+            if ($this->categoriamodel->remove($id)) {
+                set_msg(getMsgOk('Categoria removida!'));
+            } else {
+                set_msg(getMsgError('Problemas ao remover!'));
+            }
+        }
+        redirect('admin/blog/categorias', 'refresh');
+
+
+        // carrega view
+        $this->load->view('admin/includes/head');
+        $this->load->view('admin/includes/header', $dados);
+        $this->load->view('admin/blog/cities', $dados);
+        $this->load->view('admin/includes/footer');
     }
 }

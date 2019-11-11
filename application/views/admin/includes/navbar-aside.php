@@ -40,6 +40,7 @@ switch ($permission_value) {
         $nav_documents = true;
         $nav_categories = true;
         $nav_page_contatct = true;
+        $nav_analytics = true;
         $nav_ads = true;
         break;
 
@@ -51,6 +52,7 @@ switch ($permission_value) {
         $nav_documents = false;
         $nav_categories = false;
         $nav_page_contatct = false;
+        $nav_analytics = false;
         $nav_ads = false;
         break;
 
@@ -62,6 +64,7 @@ switch ($permission_value) {
         $nav_documents = false;
         $nav_categories = false;
         $nav_page_contatct = false;
+        $nav_analytics = false;
         $nav_ads = false;
         break;
 }
@@ -120,7 +123,7 @@ switch ($permission_value) {
                 <ul class="sidebar-menu" data-widget="tree">
                     <li class="treeview menu-open">
                         <a href="#">
-                            <i class="fa fa-inbox"></i>&nbsp;<span>Notícias OK v2</span>
+                            <i class="fa fa-inbox"></i>&nbsp;<span>[OK v2] Notícias</span>
                             <span class="pull-right-container">
                                 <i class="fa fa-angle-left pull-right"></i>
                             </span>
@@ -148,7 +151,9 @@ switch ($permission_value) {
                         <?php $display = ($menuActiveSplited == 'blog') ? 'block' : 'block'; ?>
                         <ul class="treeview-menu " style="display:<?php echo $display ?>">
                             <li><a href="<?php echo base_url('admin/blog/cadastrar'); ?>"><i class="fa fa-circle<?php if ($menuActive == 'blog/create') echo " "; ?>-o"></i>&nbsp;Nova Postagem</a></li>
-                            <li><a href="<?php echo base_url('admin/blog/listar'); ?>"><i class="fa fa-circle<?php if ($menuActive == 'blog/list') echo " "; ?>-o"></i>&nbsp;Listar</a></li>
+                            <li><a href="<?php echo base_url('admin/blog/listar'); ?>"><i class="fa fa-circle<?php if ($menuActive == 'blog/list') echo " "; ?>-o"></i>&nbsp;Listar Postagens</a></li>
+                            <li><a href="<?php echo base_url('admin/blog/categorias'); ?>"><i class="fa fa-circle<?php if ($menuActive == 'blog/categorias') echo " "; ?>-o"></i>&nbsp;Categorias</a></li>
+                            <li><a href="<?php echo base_url('admin/blog/cidades'); ?>"><i class="fa fa-circle<?php if ($menuActive == 'blog/cidades') echo " "; ?>-o"></i>&nbsp;Cidades</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -228,7 +233,7 @@ switch ($permission_value) {
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="treeview menu-open">
                     <a href="#">
-                        <i class="fa fa-address-card-o"></i>&nbsp;<span>Área de Contato</span>
+                        <i class="fa fa-address-card-o"></i>&nbsp;<span>[OK v2] Área de Contato</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
                         </span>
@@ -238,8 +243,10 @@ switch ($permission_value) {
 
                     ?>
                     <ul class="treeview-menu " style="display:<?php echo $display ?>">
-                        <li><a href="<?php echo base_url('admin/site/config/#contatos'); ?>"><i class="fa fa-circle<?php if ($menuActive == 'site/contatos') echo " "; ?>-o"></i>&nbsp;Configurar</a></li>
-                        <li><a href="<?php echo base_url('admin/site/config/#social'); ?>"><i class="fa fa-circle<?php if ($menuActive == 'site/social') echo " "; ?>-o"></i>&nbsp;Redes Sociais</a></li>
+                        <li><a href="<?php echo base_url('admin/site/config/contato'); ?>"><i class="fa fa-circle<?php if ($menuActive == 'site/contato') echo " "; ?>-o"></i>&nbsp;Contato</a></li>
+                        <li><a href="<?php echo base_url('admin/site/config/redessociais'); ?>"><i class="fa fa-circle<?php if ($menuActive == 'site/redessociais') echo " "; ?>-o"></i>&nbsp;Redes Sociais</a></li>
+                        <li><a href="<?php echo base_url('admin/site/config/endereco'); ?>"><i class="fa fa-circle<?php if ($menuActive == 'site/endereco') echo " "; ?>-o"></i>&nbsp;Endereço</a></li>
+                        <li><a href="<?php echo base_url('admin/site/config/googlemaps'); ?>"><i class="fa fa-circle<?php if ($menuActive == 'site/googlemaps') echo " "; ?>-o"></i>&nbsp;Google Maps</a></li>
                     </ul>
                 </li>
 
@@ -251,14 +258,32 @@ switch ($permission_value) {
                 <ul class="sidebar-menu" data-widget="tree">
                     <li class="treeview menu-open">
                         <a href="#">
-                            <i class="fa fa-line-chart"></i>&nbsp;<span>Google Analytics OK v2</span>
+                            <i class="fa fa-line-chart"></i>&nbsp;<span>[OK v2] Google Analytics</span>
                             <span class="pull-right-container">
                                 <i class="fa fa-angle-left pull-right"></i>
                             </span>
                         </a>
                         <?php $display = ($menuActiveSplited == 'users') ? 'block' : 'block'; ?>
                         <ul class="treeview-menu " style="display:<?php echo $display ?>">
-                            <li><a href="<?php echo base_url('admin/site/config/analytics'); ?>"><i class="fa fa-circle<?php if ($menuActive == 'admin/Google Analytics') echo " "; ?>-o"></i>&nbsp;Editar</a></li>
+                            <li><a href="<?php echo base_url('admin/site/config/analytics'); ?>"><i class="fa fa-circle<?php if ($menuActive == 'admin/analytics') echo " "; ?>-o"></i>&nbsp;Editar</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            <?php } ?>
+
+            <!-- MENU Ads -->
+            <?php if ($nav_users) { ?>
+                <ul class="sidebar-menu" data-widget="tree">
+                    <li class="treeview menu-open">
+                        <a href="#">
+                            <i class="fa fa-line-chart"></i>&nbsp;<span>[OK v2] Propagandas</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <?php $display = ($menuActiveSplited == 'users') ? 'block' : 'block'; ?>
+                        <ul class="treeview-menu " style="display:<?php echo $display ?>">
+                            <li><a href="<?php echo base_url('admin/site/config/ads'); ?>"><i class="fa fa-circle<?php if ($menuActive == 'admin/ads') echo " "; ?>-o"></i>&nbsp;Editar Ads</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -268,7 +293,7 @@ switch ($permission_value) {
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="treeview menu-open">
                     <a href="#">
-                        <i class="fa fa-cog"></i>&nbsp;<span>Meu Perfil OK v2</span>
+                        <i class="fa fa-cog"></i>&nbsp;<span>[OK v2] Meu Perfil</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
                         </span>
