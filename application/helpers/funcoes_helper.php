@@ -62,6 +62,7 @@ if (!function_exists('globalLogout')) {
 if (!function_exists('verificaLogin')) {
     function verificaLogin($redirect = 'admin/login')
     {
+        
         $ci = &get_instance();
         if ($ci->session->userdata('logged') != TRUE) {
             set_msg(getMsgOk('Acesso restrito! <br/> Faça login pra continuar.'));

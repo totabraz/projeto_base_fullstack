@@ -49,10 +49,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'home';
+$route['default_controller'] = 'publicblog/blog';
 $route['404_override'] = '';
 $route['500_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
 
 $route['setup']  					                = 'setup/setup/index';
 $route['setup/instalar']  					        = 'setup/setup/install';
@@ -86,6 +87,7 @@ $route['admin/blog/cadastrar']                      = 'admin/blog/create';
 $route['admin/blog/blocker/:num']                   = 'admin/blog/blocker';
 $route['admin/blog/editar/:num']                    = 'admin/blog/edit';
 
+$route['admin/site/config/banner']                  = 'admin/portalconfigs/bannertv';
 $route['admin/site/config/analytics']               = 'admin/portalconfigs/analytics';
 $route['admin/site/config/ads']                     = 'admin/portalconfigs/ads';
 $route['admin/site/config/contato']                 = 'admin/portalconfigs/contact';

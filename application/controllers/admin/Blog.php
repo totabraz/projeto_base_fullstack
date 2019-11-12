@@ -11,6 +11,8 @@ class Blog extends CI_Controller
         $this->load->library('form_validation');
         $this->load->model('option_model', 'option');
         $this->load->model('blog_model', 'blog');
+        
+        
     }
 
     public function index()

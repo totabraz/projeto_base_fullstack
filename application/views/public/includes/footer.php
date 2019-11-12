@@ -14,5 +14,5 @@
 
 
 <?php
-$this->load->view("template/includes/scripts");
+$this->load->view("public/includes/scripts");
 ?>

@@ -143,7 +143,7 @@
 
 
                                     ?>
-                                    <h2 class=" col-xs-12 text-left">
+                                    <h2 id="googlemapsarea" class=" col-xs-12 text-left">
                                         Google Maps
                                     </h2>
                                     <?php

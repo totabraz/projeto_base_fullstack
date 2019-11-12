@@ -1,9 +1,3 @@
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<!-- Content Header (Page header) -->
-
-
-<!-- Content Header (Page header) -->
-<!-- Main content -->
 <section class="content">
     <div class="row">
         <div class="col-xs-12 col-dm-10 col-md-8 col-lg-6 ">
@@ -33,21 +27,21 @@
                                             echo $msg;
                                         }
                                         echo form_open_multipart();
-                                        $google_analytics = isset($google_analytics) ? $google_analytics : "";
+                                        $ads_input = isset($ads_input) ? $ads_input : "";
 
                                         // FORM ADD NEW
                                         echo ' <div class="form-group">';
-                                        echo form_label('Google Maps [embed code]:');
+                                        echo form_label('Google Ads:');
 
                                         $opts = array(
-                                            'name'        => 'google_analytics',
+                                            'name'        => 'ads_input',
                                             // 'id'          => 'vc_desc',
-                                            'value'       => $google_analytics,
+                                            'value'       => $ads_input,
                                             'rows'        => '10',
                                             'cols'        => '10',
                                             'style'       => 'width:100%',
                                             'class'       => 'form-control',
-                                            'title' => 'Google Maps [embed code]'
+                                            'title' => 'Google Ads'
                                         );
                                         echo form_textarea($opts);
                                         echo '</div>';

@@ -33,12 +33,12 @@ if (!isset($permission_value)) $permission_value = 2;
 
 switch ($permission_value) {
     case PERMISSION_ROOT:
-        $nav_news  = true;
+        $nav_news  = false;
         $nav_blog = true;
-        $nav_users = true;
+        $nav_users = false;
         $nav_mysettings = true;
-        $nav_documents = true;
-        $nav_categories = true;
+        $nav_documents = false;
+        $nav_categories = false;
         $nav_page_contatct = true;
         $nav_analytics = true;
         $nav_ads = true;

@@ -14,6 +14,7 @@ class Portalconfigs extends CI_Controller
         // $this->load->model('Database_model', 'Database');
         $this->load->helper('form');
         $this->load->library(array('form_validation', 'email'));
+
     }
 
     public function index()
@@ -61,19 +62,18 @@ class Portalconfigs extends CI_Controller
     {
         verificaLoginAdmin();
         $this->load->model('portalconfigs_model', 'portalconfigs');
-        echo `<script data-ad-client="ca-pub-2438384457072155" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>`;
         // Regras de validação
-        $this->form_validation->set_rules('google_analytics', 'Google Analytics', 'trim|required|min_length[20]');
+        $this->form_validation->set_rules('ads_input', 'Google Ads', 'trim|required|min_length[20]');
         $msg = null;
         $dados = null;
-        $dados['google_analytics'] = $this->portalconfigs->get_option('google_analytics');
+        $dados['ads_input'] = $this->portalconfigs->get_option('ads_input');
 
         //verificar a validação 
         if ($this->form_validation->run() == false) {
             if (validation_errors()) $msg = getMsgError(validation_errors());
         } else if ($dados_form = $this->input->post()) {
-            if ($this->portalconfigs->update_option('google_analytics', $dados_form['google_analytics'])) {
-                $dados['google_analytics'] = $dados_form['google_analytics'];
+            if ($this->portalconfigs->update_option('ads_input', $dados_form['ads_input'])) {
+                $dados['ads_input'] = $dados_form['ads_input'];
                 $msg = getMsgOk('Informações salvas com sucesso!');
             } else {
                 $msg = getMsgError('Sem alterações...');
@@ -93,6 +93,43 @@ class Portalconfigs extends CI_Controller
         $this->load->view('admin/includes/footer');
     }
 
+
+    public function bannertv()
+    {
+        verificaLoginAdmin();
+        $this->load->model('bannertv_model', 'bannertv');
+        // Regras de validação
+        $this->form_validation->set_rules('bannertv_src', 'Banner', 'trim|required|min_length[20]');
+        $msg = null;
+        $dados = null;
+        $dados['bannertv_src'] = $this->bannertv->get_option('bannertv_src');
+
+        //verificar a validação 
+        if ($this->form_validation->run() == false) {
+            if (validation_errors()) $msg = getMsgError(validation_errors());
+        } else if ($dados_form = $this->input->post()) {
+            if ($this->bannertv->update_option('bannertv_src', $dados_form['bannertv_src'])) {
+                $dados['bannertv_src'] = $dados_form['bannertv_src'];
+                $msg = getMsgOk('Informações salvas com sucesso!');
+            } else {
+                $msg = getMsgError('Sem alterações...');
+            }
+        }
+
+        if (isset($msg)) set_msg($msg);
+
+        $dados['title']     = 'Banner Web TV';
+        $dados['menuActive']     = 'admin/bannertv';
+        $dados['msg_system'] = (isset($msg)) ? $msg : '';
+
+        // carrega view
+        $this->load->view('admin/includes/head');
+        $this->load->view('admin/includes/header', $dados);
+        $this->load->view('admin/portal_configs/bannertv', $dados);
+        $this->load->view('admin/includes/footer');
+    }
+
+
     public function contact()
     {
         verificaLoginAdmin();
@@ -103,7 +140,7 @@ class Portalconfigs extends CI_Controller
 
         $dados['contact'] = $this->contact->getAll();
         $dados['contact'] = (array) $dados['contact'][0];
-;
+
         $dados_form = $this->input->post();
 
 

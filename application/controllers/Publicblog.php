@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Page extends CI_Controller{
+class Publicblog extends CI_Controller{
 	
 	function __construct(){
 		parent::__construct();
@@ -16,7 +16,7 @@ class Page extends CI_Controller{
 	}
 	
 	public function index(){
-		redirect('admin', 'refresh');
+		redirect('blog', 'refresh');
     }
     
 	public function buscar(){
@@ -149,85 +149,11 @@ class Page extends CI_Controller{
 		$this->load->view('includes/footer', $dados);
 	}
 	
-	public function apresentacao() {
-		echo 'apresentacao';
-		// $this->load->view('institucional/apresentacao');
-	}
-	
-	public function contato() {
-		// Loading helper FORM
-		$this->load->helper('form');
-		$this->load->library(array('form_validation','email'));
-		
-		// Regras validações dos inputs
-		$this->form_validation->set_rules('nome','Nome','trim|required|min_length[3]|max_length[40]');
-		$this->form_validation->set_rules('email','Email','trim|required|valid_email|min_length[3]|max_length[40]');
-		$this->form_validation->set_rules('assunto','Assunto','trim|required|min_length[3]|max_length[50]');
-		$this->form_validation->set_rules('mensagem','Mensagem','trim|required|min_length[3]');
 
-		if ($this->form_validation->run() == FALSE){
-			$startOfAlert = '<div class="form-group alert alert-danger alert-dismissible fade show" role="alert">';
-			$endOfAlert = '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
-			// Erros recebidos pelo envio. -> com os um estilo pré definido estilos
-			$db['form_errors'] = validation_errors($startOfAlert, $endOfAlert);	
-			// Recuperando as informações enviadas do formulário
-		} else {
-			$dados_form = $this->input->post();
-			$this->email->from($dados_form['email'],$dados_form['nome']);
-			$this->email->to('contato@email.com');
-			$this->email->subject($dados_form['assunto']);
-			$this->email->message($dados_form['mensagem']);
-			if ($this->email->send()) { $db['form_errors'] = 'Email enviado com sucesso!'; }
-			else { $db['form_errors'] = 'Falha ao enviar o email!'; }
-		}
-		$db['title'] = 'Contato';
-		$this->load->view('includes/head');
-		$this->load->view('includes/main-nav');
-		$this->load->view('contato', $db);
-		$this->load->view('includes/footer');
-	}
-
-	
-	
-	public function documento(){
-		$this->load->helper('form');
-		$this->load->library('form_validation');
-		if (($id = $this->uri->segment(3)) > 0 ) {
-			if ($documento = $this->documentos->getDocumento($id)) {
-				$dados['title']	= $documento->titulo;
-				$dados["titulo"] = $documento->titulo;
-				$dados["autor"] = $documento->autor;
-				$dados["orientador"] = $documento->orientador;
-				$dados["resumo"] = $documento->resumo;
-				$dados["abstract"] = $documento->abstract;
-				$dados["tipo_doc"] = $documento->tipo_doc;
-				$dados["idioma"] = $documento->idioma;
-				$dados["data_defesa"] = $documento->data_defesa;
-				$dados['arquivo'] = $documento->arquivo;
-			} else {
-				$dados['title']		=  'Notícia não encontrada';
-				$dados['titulo']  =  'Notícia não encontrada';
-				$dados['autor'] = "<p>Nenhuma notícia foi encontrada com este esdereço</p>";
-				// $dados['documento_imagem'] = "";
-			}
-		} else {
-			redirect(base_url(), 'refresh');
-		}
-		if (!isset($dados['title'])) {
-			$dados['title'] = 'Notícia não encontrada';
-		}
-		$dados['tela'] 		=  'documento';
-		$this->load->view('includes/head', $dados);
-		$this->load->view('documentos/documento', $dados);
-		$this->load->view('includes/footer', $dados);
-	}
-
-	public function getSegments(){
-		echo 'getSegments';
-		echo 'URI - 1: ' . $this->uri->segment(1) . '<br/>';
-		echo 'URI - 2: ' . $this->uri->segment(2) . '<br/>';
-		echo 'URI - 3: ' . $this->uri->segment(3) . '<br/>';
-		echo 'URI - 4: ' . $this->uri->segment(4) . '<br/>';
-		echo 'URI - 5: ' . $this->uri->segment(5) . '<br/>';
+	public function blog() {
+		$dados = '';
+		$this->load->view('public/includes/head', $dados);
+		// $this->load->view('documentos/blog', $dados);
+		$this->load->view('public/includes/footer', $dados);	
 	}
 }
