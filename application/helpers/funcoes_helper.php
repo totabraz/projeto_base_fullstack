@@ -62,7 +62,7 @@ if (!function_exists('globalLogout')) {
 if (!function_exists('verificaLogin')) {
     function verificaLogin($redirect = 'admin/login')
     {
-        
+
         $ci = &get_instance();
         if ($ci->session->userdata('logged') != TRUE) {
             set_msg(getMsgOk('Acesso restrito! <br/> Faça login pra continuar.'));
@@ -201,7 +201,7 @@ if (!function_exists('shorterText')) {
 if (!function_exists('removeSpaces')) {
     function removeSpaces($txtInit = '')
     {
-        return rtrim(preg_replace('/\s+/', ' ', $word));
+        return rtrim(preg_replace('/\s+/', ' ', $txtInit));
     }
 }
 
@@ -350,7 +350,7 @@ if (!function_exists('removeBasicWords')) {
         function transformInID($input)
         {
             if (isset($input) && !is_array($input)) {
-                $input = preg_replace("#[^A-Za-z1-9-\s]#","", $input);
+                $input = preg_replace("#[^A-Za-z1-9-\s]#", "", $input);
                 $input = trim(preg_replace('/\s+/', ' ', $input));
                 $input = trim(preg_replace('/\s/', '_', $input));
                 $input = strtolower($input);
